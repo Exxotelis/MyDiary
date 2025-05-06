@@ -581,3 +581,14 @@ def create_admin(request):
     except Exception as e:
         return HttpResponse(f"Error: {str(e)}", status=500)
 
+
+from django.core.management import call_command
+from django.http import HttpResponse
+
+def migrate_db(request):
+    try:
+        call_command('migrate')
+        return HttpResponse("Migrations ran successfully")
+    except Exception as e:
+        return HttpResponse(f"Migration error: {str(e)}", status=500)
+
