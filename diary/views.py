@@ -592,3 +592,17 @@ def migrate_db(request):
     except Exception as e:
         return HttpResponse(f"Migration error: {str(e)}", status=500)
 
+
+from django.core.management import call_command
+from django.http import HttpResponse
+
+def run_collectstatic(request):
+    try:
+        call_command('collectstatic', interactive=False)
+        return HttpResponse("Static files collected")
+    except Exception as e:
+        return HttpResponse(f"Error: {str(e)}", status=500)
+
+
+
+
