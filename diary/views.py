@@ -563,6 +563,9 @@ def export_today_answers_pdf(request):
         'Content-Disposition': 'attachment; filename="all_diary_entries.pdf"'
     })
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
 def create_admin(request):
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
