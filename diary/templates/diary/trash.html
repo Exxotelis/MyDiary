@@ -1,0 +1,27 @@
+{% extends 'diary/base.html' %}
+{% block content %}
+<h2>🗑️ Κάδος</h2>
+<p>Οι καταχωρήσεις που έχουν διαγραφεί προσωρινά. Μπορείς να τις επαναφέρεις ή να τις διαγράψεις οριστικά.</p>
+
+{% if entries %}
+<ul>
+  {% for entry in entries %}
+    <li>
+      <strong>{{ entry.date }}</strong> — {{ entry.get_mood_display|default:"—" }}
+      <br>
+      <form method="post" action="{% url 'restore_entry' entry.date %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-success">♻️ Επαναφορά</button>
+      </form>
+      <form method="post" action="{% url 'permanent_delete_entry' entry.date %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Οριστική διαγραφή;')">❌ Διαγραφή</button>
+      </form>
+    </li>
+    <hr>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Ο Κάδος είναι άδειος.</p>
+{% endif %}
+{% endblock %}

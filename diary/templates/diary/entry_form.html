@@ -1,0 +1,62 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+  <h1>Καταχώρηση για {{ date }}</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Περιεχόμενο ημέρας -->
+    <label for="content">Περιγραφή:</label><br>
+    <textarea name="content" rows="10" cols="60">{{ entry.content }}</textarea><br><br>
+
+    <!-- Διάθεση -->
+    <label for="mood">Διάθεση:</label><br>
+    <select name="mood">
+      <option value="">— Επιλογή —</option>
+      <option value="happy" {% if entry.mood == "happy" %}selected{% endif %}>😊 Χαρούμενος</option>
+      <option value="sad" {% if entry.mood == "sad" %}selected{% endif %}>😢 Λυπημένος</option>
+      <option value="stressed" {% if entry.mood == "stressed" %}selected{% endif %}>😰 Αγχωμένος</option>
+      <option value="calm" {% if entry.mood == "calm" %}selected{% endif %}>😌 Ήρεμος</option>
+      <option value="angry" {% if entry.mood == "angry" %}selected{% endif %}>😠 Θυμωμένος</option>
+    </select><br><br>
+
+    <!-- Κατηγορία -->
+    <label for="tag">Κατηγορία:</label><br>
+    <select name="tag">
+      <option value="">— Επιλογή —</option>
+      <option value="work" {% if entry.tag == "work" %}selected{% endif %}>Εργασία</option>
+      <option value="health" {% if entry.tag == "health" %}selected{% endif %}>Υγεία</option>
+      <option value="relationships" {% if entry.tag == "relationships" %}selected{% endif %}>Σχέσεις</option>
+      <option value="personal" {% if entry.tag == "personal" %}selected{% endif %}>Προσωπικά</option>
+      <option value="other" {% if entry.tag == "other" %}selected{% endif %}>Άλλο</option>
+    </select><br><br>
+
+    <!-- Highlights -->
+    <label>Σημαντικά Σημεία:</label><br>
+    <input type="checkbox" name="highlight_proud" {% if entry.highlights.proud %}checked{% endif %}> Ένιωσα περήφανος<br>
+    <input type="checkbox" name="highlight_helped" {% if entry.highlights.helped %}checked{% endif %}> Βοήθησα κάποιον<br>
+    <input type="checkbox" name="highlight_difficult" {% if entry.highlights.had_difficult_time %}checked{% endif %}> Είχα δύσκολη στιγμή<br><br>
+
+    <!-- Εικόνα -->
+    <label for="image">Εικόνα ημέρας:</label><br>
+    {% if entry.image %}
+      <img src="{{ entry.image.url }}" width="150"><br>
+    {% endif %}
+    <input type="file" name="image"><br><br>
+    {% for badge in user.userbadge_set.all %}
+      <span class="badge bg-success">{{ badge.badge_type }}</span>
+    {% endfor %}
+
+
+    <!-- Δημόσιο / Ιδιωτικό -->
+    <label>
+      <input type="checkbox" name="is_public" {% if entry.is_public %}checked{% endif %}>
+      Αυτή η καταχώρηση είναι δημόσια
+    </label><br><br>
+
+    <button type="submit">Αποθήκευση</button>
+  </form>
+
+  <br><a href="{% url 'calendar' %}">← Επιστροφή στο ημερολόγιο</a>
+{% endblock %}

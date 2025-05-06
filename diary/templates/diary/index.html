@@ -1,0 +1,121 @@
+{% extends 'diary/base.html' %}
+{% load static %}
+
+{% block title %}MyDiary - Αρχική{% endblock %}
+
+{% block content %}
+<div class="row my-4">
+
+  <!-- Αριστερή Στήλη -->
+  <div class="col-lg-7 col-12">
+    <div class="custom-block bg-white mb-4">
+      <h2 class="mb-4">Ημερήσιες Ερωτήσεις</h2>
+
+      {% if prompt %}
+        <div class="alert alert-info"><strong>Σκέψου:</strong> {{ prompt }}</div>
+        <form method="post">{% csrf_token %}
+          <div class="mb-4">
+            <label><strong>{{ prompt }}</strong></label>
+            <textarea name="prompt_answer" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Αποθήκευση</button>
+        </form>
+      {% else %}
+        <p class="text-muted">Δεν υπάρχει ερώτηση για σήμερα.</p>
+      {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+      <div class="custom-block bg-white mb-4">
+        <h3 class="mb-4">Ερωτήσεις Ημέρας</h3>
+        <form method="post">{% csrf_token %}
+          {% for num, question in questions.items %}
+            <div class="mb-3">
+              <label><strong>{{ question }}</strong></label>
+              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-success">Αποθήκευση Απαντήσεων</button>
+        </form>
+      </div>
+    {% endif %}
+
+    <div class="custom-block bg-white">
+      <h5 class="mb-4">Πρόσφατη Δραστηριότητα</h5>
+      <div id="pie-chart"></div>
+    </div>
+  </div>
+
+  <!-- Δεξιά Στήλη -->
+  <div class="col-lg-5 col-12">
+    <div class="custom-block custom-block-profile text-center bg-white mb-4">
+      <div class="custom-block-profile-image-wrap mb-4">
+        <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="custom-block-profile-image img-fluid" alt="">
+        <a href="#" class="bi-pencil-square custom-block-edit-icon"></a>
+      </div>
+      <p class="d-flex flex-wrap mb-2"><strong>Όνομα:</strong> <span>{{ request.user.username }}</span></p>
+      <p class="d-flex flex-wrap mb-2"><strong>Email:</strong> <a href="#">{{ request.user.email }}</a></p>
+      <p class="d-flex flex-wrap mb-0"><strong>Μέλος από:</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
+    </div>
+
+    {% if streak > 1 %}
+      <div class="custom-block alert alert-success">🔥 Έχεις καταγράψει {{ streak }} συνεχόμενες ημέρες! Συνέχισε έτσι!</div>
+    {% elif streak == 1 %}
+      <div class="custom-block alert alert-info">✍️ Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!</div>
+    {% endif %}
+
+    <div class="custom-block custom-block-bottom d-flex flex-wrap mt-4">
+      <div class="custom-block-bottom-item"><a href="{% url 'calendar' %}" class="d-flex flex-column"><i class="custom-block-icon bi-calendar"></i><small>Ημερολόγιο</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'my_entries' %}" class="d-flex flex-column"><i class="custom-block-icon bi-journal-text"></i><small>Καταχωρήσεις</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'export_today_answers_pdf' %}" class="d-flex flex-column"><i class="custom-block-icon bi-download"></i><small>Εξαγωγή</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'trash' %}" class="d-flex flex-column"><i class="custom-block-icon bi-trash"></i><small>Κάδος</small></a></div>
+    </div>
+
+    <div id="chart" class="mt-4"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new ApexCharts(document.querySelector("#pie-chart"), {
+      chart: { type: 'pie', width: 380 },
+      series: [13, 43, 22],
+      labels: ['Balance', 'Expense', 'Credit Loan'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: { width: 200 },
+          legend: { position: 'bottom' }
+        }
+      }]
+    }).render();
+
+    new ApexCharts(document.querySelector("#chart"), {
+      chart: { type: 'bar', height: 350 },
+      series: [
+        { name: 'Income', data: [44, 55, 57, 56, 61, 58, 63, 60, 66] },
+        { name: 'Expense', data: [76, 85, 101, 98, 87, 105, 91, 114, 94] },
+        { name: 'Transfer', data: [35, 41, 36, 26, 45, 48, 52, 53, 41] }
+      ],
+      plotOptions: {
+        bar: { horizontal: false, columnWidth: '55%', endingShape: 'rounded' }
+      },
+      dataLabels: { enabled: false },
+      stroke: { show: true, width: 2, colors: ['transparent'] },
+      xaxis: { categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'] },
+      yaxis: { title: { text: '$ (thousands)' } },
+      fill: { opacity: 1 },
+      tooltip: {
+        y: {
+          formatter: val => "$ " + val + " thousands"
+        }
+      }
+    }).render();
+  });
+</script>
+
+  
+{% endblock %}

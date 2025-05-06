@@ -1,0 +1,9 @@
+{% extends 'diary/base.html' %}
+{% block content %}
+<h2>Εγγραφή</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Δημιουργία λογαριασμού</button>
+</form>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'diary/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Αρχική - MyDiary{% endblock %}
+
+{% block content %}
+<div class="row my-4">
+    <!-- Left Section -->
+    <div class="col-lg-7 col-12">
+        <!-- User Journal Summary -->
+        <div class="custom-block custom-block-balance">
+            <small>Το Ημερολόγιό σου</small>
+            <h2 class="mt-2 mb-3">{{ total_entries }} Καταχωρήσεις</h2>
+
+            <div class="custom-block-numbers d-flex align-items-center">
+                <p class="me-4">Σερί: <strong>{{ streak }} ημέρες</strong></p>
+                <p>Τελευταία: <strong>{{ last_entry_date }}</strong></p>
+            </div>
+
+            <div class="d-flex mt-3">
+                <div>
+                    <small>Σήμερα</small>
+                    <p>{{ today|date:"d/m/Y" }}</p>
+                </div>
+                <div class="ms-auto">
+                    <small>Χρήστης</small>
+                    <p>{{ request.user.first_name }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ημερήσιες Ερωτήσεις -->
+        <div class="custom-block bg-white">
+            <h5 class="mb-4">Ημερήσιες Ερωτήσεις</h5>
+            <div id="chart"></div>
+            
+
+            {% if prompt %}
+                <div class="alert alert-info">
+                    <strong>Σκέψου:</strong> {{ prompt }}
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label><strong>{{ prompt }}</strong></label>
+                        <textarea name="prompt_answer" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Αποθήκευση</button>
+                </form>
+            {% else %}
+                <p class="text-muted">Δεν υπάρχει ερώτηση για σήμερα.</p>
+            {% endif %}
+        </div>
+
+        <!-- Recent Activity Chart Placeholder -->
+        <div class="custom-block bg-white">
+            <h5 class="mb-4">Πρόσφατη Δραστηριότητα</h5>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-lg-5 col-12">
+        <!-- Profile Summary -->
+        <div class="custom-block custom-block-profile text-center bg-white">
+            <div class="custom-block-profile-image-wrap mb-4">
+                <img src="{% static 'images/avatars/default.png' %}" class="custom-block-profile-image img-fluid" alt="">
+                <a href="#" class="bi-pencil-square custom-block-edit-icon"></a>
+            </div>
+            <p class="d-flex flex-wrap mb-2"><strong>Όνομα:</strong><span>{{ request.user.get_full_name }}</span></p>
+            <p class="d-flex flex-wrap mb-2"><strong>Email:</strong><a href="#">{{ request.user.email }}</a></p>
+            <p class="d-flex flex-wrap mb-0"><strong>Μέλος από:</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
+        </div>
+
+        <!-- Streak Message -->
+        {% if streak > 1 %}
+        <div class="custom-block alert alert-success mt-4">
+            🔥 Έχεις καταγράψει {{ streak }} συνεχόμενες ημέρες! Συνέχισε έτσι!
+        </div>
+        {% elif streak == 1 %}
+        <div class="custom-block alert alert-info mt-4">
+            ✍️ Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!
+        </div>
+        {% endif %}
+
+        <!-- Quick Actions -->
+        <div class="custom-block custom-block-bottom d-flex flex-wrap mt-4">
+            <div class="custom-block-bottom-item">
+                <a href="{% url 'calendar' %}" class="d-flex flex-column">
+                    <i class="custom-block-icon bi-calendar"></i>
+                    <small>Ημερολόγιο</small>
+                </a>
+            </div>
+            <div class="custom-block-bottom-item">
+                <a href="{% url 'my_entries' %}" class="d-flex flex-column">
+                    <i class="custom-block-icon bi-journal-text"></i>
+                    <small>Καταχωρήσεις</small>
+                </a>
+            </div>
+            <div class="custom-block-bottom-item">
+                <a href="#" class="d-flex flex-column">
+                    <i class="custom-block-icon bi-download"></i>
+                    <small>Εξαγωγή</small>
+                </a>
+            </div>
+            <div class="custom-block-bottom-item">
+                <a href="{% url 'trash' %}" class="d-flex flex-column">
+                    <i class="custom-block-icon bi-trash"></i>
+                    <small>Κάδος</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
