@@ -28,6 +28,11 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = ['*']
 
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+# SECURITY WARNING: don't run with debug turned on in production!
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', cast=Csv)
+
 
 
 # Application definition
