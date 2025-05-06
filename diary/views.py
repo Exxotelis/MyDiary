@@ -7,6 +7,7 @@ from django.http import JsonResponse, Http404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render
 from .prompts_loader import get_daily_prompt
@@ -561,3 +562,9 @@ def export_today_answers_pdf(request):
     return HttpResponse(buffer, content_type='application/pdf', headers={
         'Content-Disposition': 'attachment; filename="all_diary_entries.pdf"'
     })
+
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
+        return HttpResponse("Superuser created")
+    return HttpResponse("Superuser already exists")
