@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', cast=Csv)
+CSRF_TRUSTED_ORIGINS = ['https://web-production-825c.up.railway.app']
 
 
 
