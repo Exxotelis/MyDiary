@@ -18,9 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from diary.views import create_admin
-from diary.views import migrate_db
-from diary.views import run_collectstatic
 
 
 
@@ -29,8 +26,5 @@ from diary.views import run_collectstatic
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('diary.urls')),
-    path('createsuperuser/', create_admin),
-    path('migrate/', migrate_db),
-    path('collectstatic/', run_collectstatic),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

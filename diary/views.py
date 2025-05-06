@@ -563,45 +563,10 @@ def export_today_answers_pdf(request):
         'Content-Disposition': 'attachment; filename="all_diary_entries.pdf"'
     })
 
-from django.contrib.auth import get_user_model
-from django.http import HttpResponse
-
-def create_admin(request):
-    User = get_user_model()
-    try:
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser(
-                username='admin',
-                email='admin@example.com',
-                password='admin123'
-            )
-            return HttpResponse("Superuser created")
-        else:
-            return HttpResponse("Superuser already exists")
-    except Exception as e:
-        return HttpResponse(f"Error: {str(e)}", status=500)
 
 
-from django.core.management import call_command
-from django.http import HttpResponse
-
-def migrate_db(request):
-    try:
-        call_command('migrate')
-        return HttpResponse("Migrations ran successfully")
-    except Exception as e:
-        return HttpResponse(f"Migration error: {str(e)}", status=500)
 
 
-from django.core.management import call_command
-from django.http import HttpResponse
-
-def run_collectstatic(request):
-    try:
-        call_command('collectstatic', interactive=False)
-        return HttpResponse("Static files collected")
-    except Exception as e:
-        return HttpResponse(f"Error: {str(e)}", status=500)
 
 
 
