@@ -563,11 +563,21 @@ def export_today_answers_pdf(request):
         'Content-Disposition': 'attachment; filename="all_diary_entries.pdf"'
     })
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 
 def create_admin(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
-        return HttpResponse("Superuser created")
-    return HttpResponse("Superuser already exists")
+    User = get_user_model()
+    try:
+        if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser(
+                username='admin',
+                email='admin@example.com',
+                password='admin123'
+            )
+            return HttpResponse("Superuser created")
+        else:
+            return HttpResponse("Superuser already exists")
+    except Exception as e:
+        return HttpResponse(f"Error: {str(e)}", status=500)
+
