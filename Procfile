@@ -1,1 +1,1 @@
-web: gunicorn DairyApp.wsgi
+web: gunicorn mydiary.wsgi
