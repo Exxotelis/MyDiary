@@ -41,10 +41,13 @@
     <!-- Εικόνα -->
     <label for="image">Εικόνα ημέρας:</label><br>
     {% if entry.image_base64 %}
-      <img src="data:image/png;base64,{{ entry.image_base64 }}" width="150"><br>
+    <img src="data:image/png;base64,{{ entry.image_base64 }}" class="img-thumbnail" alt="Εικόνα">
     {% elif entry.image %}
-      <img src="{{ entry.image.url }}" width="150"><br>
+      <img src="{{ entry.image.url }}" class="img-thumbnail" alt="Εικόνα (παλιά)">
+    {% else %}
+      <p>Δεν υπάρχει εικόνα.</p>
     {% endif %}
+  
     <input type="file" name="image"><br><br>
     {% if entry.image %}
       <button type="button" id="remove-image-btn" class="btn btn-sm btn-danger mt-2">🗑️ Διαγραφή εικόνας</button>

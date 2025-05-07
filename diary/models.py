@@ -29,7 +29,7 @@ class DiaryEntry(models.Model):
     tag = models.CharField(max_length=20, choices=TAG_CHOICES, blank=True, null=True)
     is_public = models.BooleanField(default=False)
     image = models.ImageField(upload_to='diary_images/', blank=True, null=True)
-    image_base64 = models.TextField(blank=True, null=True)
+    image_base64 = models.TextField(blank=True, null=True, default=None)
 
     # π.χ. {"proud": true, "helped_someone": false}
     highlights = models.JSONField(blank=True, null=True)
