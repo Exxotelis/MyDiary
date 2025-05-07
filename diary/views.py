@@ -593,6 +593,19 @@ def profile_view(request):
         'badges': badges,
     })
 
+# Στο views.py
+
+from django.http import HttpResponse
+from .models import DiaryEntry
+
+@login_required
+def clear_images(request):
+    entries = DiaryEntry.objects.filter(user=request.user)
+    for entry in entries:
+        entry.image = None
+        entry.image_base64 = None
+        entry.save()
+    return HttpResponse("Images cleared.")
 
 
 
