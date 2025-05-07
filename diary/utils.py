@@ -1,6 +1,12 @@
 from django.utils import timezone
 from datetime import timedelta
 from .models import DiaryEntry, JournalAnswer, Notification, UserBadge, Badge
+import base64
+
+def convert_image_to_base64(image_file):
+    return base64.b64encode(image_file.read()).decode('utf-8')
+
+
 def get_streak(user):
     today = timezone.now().date()
     streak = 0

@@ -40,7 +40,9 @@
 
     <!-- Εικόνα -->
     <label for="image">Εικόνα ημέρας:</label><br>
-    {% if entry.image %}
+    {% if entry.image_base64 %}
+      <img src="data:image/png;base64,{{ entry.image_base64 }}" width="150"><br>
+    {% elif entry.image %}
       <img src="{{ entry.image.url }}" width="150"><br>
     {% endif %}
     <input type="file" name="image"><br><br>

@@ -25,7 +25,7 @@ from datetime import timedelta
 from django.conf import settings
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from django.shortcuts import get_object_or_404
-from .utils import get_streak, check_seven_day_streak
+from .utils import get_streak, check_seven_day_streak, convert_image_to_base64
 
 
 
@@ -189,10 +189,6 @@ def entry_view(request, date):
     if entry.is_deleted:
         raise Http404("Αυτή η καταχώρηση βρίσκεται στον Κάδο.")
 
-
-    if not entry:
-        entry = DiaryEntry.objects.create(user=request.user, date=date_obj)
-
     prompt_seed = int(date_obj.strftime("%Y%m%d"))
     random.seed(prompt_seed)
     prompt = get_daily_prompt()
@@ -209,7 +205,9 @@ def entry_view(request, date):
         }
 
         if request.FILES.get('image'):
-            entry.image = request.FILES['image']
+            image_file = request.FILES['image']
+            entry.image_base64 = convert_image_to_base64(image_file)
+            entry.image = None  # Δεν αποθηκεύουμε image αρχεία, μόνο base64
 
         entry.save()
 
@@ -563,13 +561,7 @@ def export_today_answers_pdf(request):
         'Content-Disposition': 'attachment; filename="all_diary_entries.pdf"'
     })
 
-# in views.py
-from django.http import HttpResponse
-from django.core.management import call_command
 
-def run_collectstatic(request):
-    call_command('collectstatic', interactive=False)
-    return HttpResponse("Static files collected successfully.")
 
 
 

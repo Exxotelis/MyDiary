@@ -1,4 +1,5 @@
 {% extends 'diary/base.html' %}
+{% load static %}
 
 {% block content %}
 {% if messages %}
@@ -13,27 +14,28 @@
 {% endblock %}
 
 {% block scripts %}
+  {{ block.super }}
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-  const calendarEl = document.getElementById('calendar');
-  if (calendarEl) {
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      locale: 'el',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
-      },
-      dateClick: function(info) {
-        window.location.href = '/entry/' + info.dateStr + '/';
-      },
-      events: '/events/'
+      const calendarEl = document.getElementById('calendar');
+      if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale: 'el',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: ''
+          },
+          dateClick: function(info) {
+            window.location.href = '/entry/' + info.dateStr + '/';
+          },
+          events: '/events/'
+        });
+        calendar.render();
+      }
     });
-    calendar.render();
-  }
-});
-
   </script>
 {% endblock %}
+
