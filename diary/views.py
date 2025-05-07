@@ -577,29 +577,21 @@ def gallery_view(request):
     return render(request, 'diary/gallery.html', {'images': [e.image_base64 for e in images]})
 
 
-from django.http import HttpResponse
-from django.contrib.admin.views.decorators import staff_member_required
-from .models import DiaryEntry
 
-@staff_member_required
-def clear_all_diary_images(request):
-    entries = DiaryEntry.objects.all()
-    cleared = 0
+@login_required
+def profile_view(request):
+    user = request.user
 
-    for entry in entries:
-        changed = False
-        if entry.image:
-            entry.image.delete(save=False)
-            entry.image = None
-            changed = True
-        if entry.image_base64:
-            entry.image_base64 = None
-            changed = True
-        if changed:
-            entry.save()
-            cleared += 1
+    total_entries = DiaryEntry.objects.filter(user=user, is_deleted=False).count()
+    total_answers = JournalAnswer.objects.filter(user=user).count()
+    badges = UserBadge.objects.filter(user=user)
 
-    return HttpResponse(f"✅ Καθαρίστηκαν εικόνες από {cleared} καταχωρήσεις.")
+    return render(request, 'diary/profile.html', {
+        'user': user,
+        'total_entries': total_entries,
+        'total_answers': total_answers,
+        'badges': badges,
+    })
 
 
 

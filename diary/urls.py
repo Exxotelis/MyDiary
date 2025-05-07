@@ -19,6 +19,7 @@ urlpatterns = [
     path('permanent-delete/<str:date>/', views.permanent_delete_entry, name='permanent_delete_entry'),
     path('export-today-answers/', views.export_today_answers_pdf, name='export_today_answers_pdf'),
     path('gallery/', views.gallery_view, name='gallery'),
+    path('profile/', views.profile_view, name='profile'),
 
 
     # authentication
