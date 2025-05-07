@@ -1,0 +1,20 @@
+{% extends 'diary/base.html' %}
+{% block content %}
+<h1>📸 Η Γκαλερί μου</h1>
+
+{% if images %}
+<div class="row">
+  {% for img in images %}
+    <div class="col-md-3 mb-4">
+      <div class="card shadow-sm">
+        <img src="data:image/png;base64,{{ img }}" class="card-img-top" alt="Ημερήσια Εικόνα">
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>Δεν έχεις ανεβάσει ακόμα εικόνες.</p>
+{% endif %}
+
+<a href="{% url 'calendar' %}" class="btn btn-secondary mt-3">← Επιστροφή</a>
+{% endblock %}

@@ -46,6 +46,16 @@
       <img src="{{ entry.image.url }}" width="150"><br>
     {% endif %}
     <input type="file" name="image"><br><br>
+    {% if entry.image %}
+      <button type="button" id="remove-image-btn" class="btn btn-sm btn-danger mt-2">🗑️ Διαγραφή εικόνας</button>
+    {% endif %}
+
+    <img id="preview-image" src="#" alt="Προεπισκόπηση εικόνας" style="display: none; max-width: 150px; margin-top: 10px;"><br>
+    {% if entry.image %}
+    <input type="hidden" name="remove_image" id="remove-image-flag" value="false">
+    {% endif %}
+    <br><br>
+
     {% for badge in user.userbadge_set.all %}
       <span class="badge bg-success">{{ badge.badge_type }}</span>
     {% endfor %}
@@ -61,4 +71,58 @@
   </form>
 
   <br><a href="{% url 'calendar' %}">← Επιστροφή στο ημερολόγιο</a>
+{% endblock %}
+  
+{% block scripts %}
+  {{ block.super }}
+  <script>
+    document.querySelector('input[type="file"][name="image"]').addEventListener('change', function (event) {
+      const preview = document.getElementById('preview-image');
+      const file = event.target.files[0];
+
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      const maxSizeMB = 2;
+
+      if (!allowedTypes.includes(file.type)) {
+        alert('Επιτρέπονται μόνο εικόνες JPEG, PNG ή WEBP.');
+        event.target.value = '';
+        preview.style.display = 'none';
+        return;
+      }
+
+      if (file.size > maxSizeMB * 1024 * 1024) {
+        alert(`Το αρχείο πρέπει να είναι μικρότερο από ${maxSizeMB}MB.`);
+        event.target.value = '';
+        preview.style.display = 'none';
+        return;
+      }
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '#';
+        preview.style.display = 'none';
+      }
+    });
+    document.getElementById('remove-image-btn').style.display = 'inline-block';
+    document.getElementById('remove-image-flag').value = 'false';
+
+    // Νέο event για το κουμπί διαγραφής εικόνας
+    document.getElementById('remove-image-btn').addEventListener('click', function () {
+      const fileInput = document.querySelector('input[type="file"][name="image"]');
+      const preview = document.getElementById('preview-image');
+      const removeFlag = document.getElementById('remove-image-flag');
+
+      fileInput.value = '';
+      preview.src = '#';
+      preview.style.display = 'none';
+      this.style.display = 'none';
+      removeFlag.value = 'true';
+    });
+  </script>
 {% endblock %}
