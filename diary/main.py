@@ -5,9 +5,9 @@ from decouple import config
 
 # Configuration       
 cloudinary.config( 
-    cloud_name = config("CLOUDINARY_CLOUD_NAME"), 
-    api_key = config("CLOUDINARY_API_KEY"), 
-    api_secret = config("CLOUDINARY_API_SECRET"),
+    cloud_name = "dqabkqoes", 
+    api_key = "424352538346683", 
+    api_secret = "Kkj0QbB_gc9BMgbGww614CoZIXs",
     secure=True
 )
 
