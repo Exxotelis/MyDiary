@@ -608,5 +608,13 @@ def clear_images(request):
     return HttpResponse("Images cleared.")
 
 
+from django.core.management import call_command
+
+@login_required
+def run_migrations(request):
+    call_command('migrate', interactive=False)
+    return HttpResponse("Migrations applied.")
+
+
 
 
