@@ -608,16 +608,6 @@ def delete_image_entry(request, date):
         entry.save()
     return redirect('gallery_view')
 
-from django.core.management import call_command
-from django.http import HttpResponse
-
-
-@login_required  # ή @superuser_required αν το έχεις φτιάξει
-def run_migrations_view(request):
-    call_command('makemigrations')
-    call_command('migrate')
-    return HttpResponse("✅ Migrations completed.")
-
 
 
 @login_required
