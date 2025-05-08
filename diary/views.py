@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import DiaryEntry, UserBadge
+from .models import DiaryEntry, UserBadge, ProfileImage, UserProfile
 from datetime import datetime
 import random
 from django.http import JsonResponse, Http404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.models import User
@@ -628,3 +629,34 @@ def upload_profile_image(request):
         profile.save()
         messages.success(request, "✅ Η εικόνα προφίλ ενημερώθηκε.")
         return redirect('profile_view')
+    
+
+@login_required
+@require_POST
+def upload_profile_image(request):
+    image_file = request.FILES.get('image')
+    if not image_file:
+        messages.error(request, "Δεν επιλέξατε εικόνα.")
+        return redirect('profile')
+
+    # 1. Ανέβασμα στο Cloudinary
+    upload_result = cloudinary.uploader.upload(image_file)
+    image_url = upload_result['secure_url']
+
+    # 2. Απενεργοποιούμε τις προηγούμενες
+    ProfileImage.objects.filter(user=request.user).update(is_active=False)
+
+    # 3. Δημιουργούμε νέα
+    profile_image = ProfileImage.objects.create(
+        user=request.user,
+        image_url=image_url,
+        is_active=True
+    )
+
+    # 4. Ενημερώνουμε το UserProfile
+    profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    profile.profile_image = image_url
+    profile.save()
+
+    messages.success(request, "Η εικόνα προφίλ ενημερώθηκε με επιτυχία.")
+    return redirect('profile')

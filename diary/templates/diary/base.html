@@ -117,7 +117,7 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {% if request.user.is_authenticated %}
             {% if request.user.userprofile.profile_image %}
-              <img src="{{ request.user.userprofile.profile_image }}" cclass="profile-image img-fluid me-3" alt="Προφίλ">
+              <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
             {% else %}
               <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
             {% endif %}
@@ -130,7 +130,7 @@
             <div class="dropdown-menu-profile-thumb d-flex">
               {% if request.user.is_authenticated %}
               {% if request.user.userprofile.profile_image %}
-                <img src="{{ request.user.userprofile.profile_image }}" cclass="profile-image img-fluid me-3" alt="Προφίλ">
+                <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
               {% else %}
                 <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
               {% endif %}

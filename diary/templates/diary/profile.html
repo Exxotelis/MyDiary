@@ -5,6 +5,22 @@
 <div class="container mt-4">
   <h2 class="mb-3">Το Προφίλ Μου</h2>
 
+  <!-- Εικόνα προφίλ -->
+  <div class="text-center mb-4">
+    {% if profile.profile_image %}
+      <img src="{{ profile.profile_image }}" class="profile-image img-fluid me-3" alt="Εικόνα Προφίλ">
+    {% else %}
+      <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Προεπιλεγμένο Προφίλ">
+    {% endif %}
+  </div>
+
+  <!-- Φόρμα αλλαγής εικόνας -->
+  <form method="post" action="{% url 'upload_profile_image' %}" enctype="multipart/form-data" class="text-center mb-5">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*" required class="form-control mb-2" style="max-width: 300px; margin: 0 auto;">
+    <button type="submit" class="btn btn-primary">Αλλαγή Εικόνας Προφίλ</button>
+  </form>
+
   <!-- Στοιχεία Χρήστη -->
   <div class="card mb-4">
     <div class="card-body">

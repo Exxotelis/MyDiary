@@ -148,3 +148,11 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
     
+class ProfileImage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile_images')
+    image_url = models.URLField()
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=False)  # Αν είναι η ενεργή εικόνα
+
+    class Meta:
+        ordering = ['-uploaded_at']
