@@ -28,7 +28,7 @@ class DiaryEntry(models.Model):
     mood = models.CharField(max_length=20, choices=MOOD_CHOICES, blank=True, null=True)
     tag = models.CharField(max_length=20, choices=TAG_CHOICES, blank=True, null=True)
     is_public = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='diary_images/', blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
 
     # π.χ. {"proud": true, "helped_someone": false}
     highlights = models.JSONField(blank=True, null=True)

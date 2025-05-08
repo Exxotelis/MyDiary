@@ -20,6 +20,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from io import BytesIO
+import cloudinary.uploader
+
 import os
 from datetime import timedelta
 from django.conf import settings
@@ -211,8 +213,10 @@ def entry_view(request, date):
 
    
         elif request.FILES.get('image'):
-            image_file = request.FILES['image']
-            entry.image = None  
+            upload_result = cloudinary.uploader.upload(request.FILES['image'])
+            entry.image = upload_result['secure_url'] 
+    
+
         entry.save()
 
         # Badges και ειδοποιήσεις

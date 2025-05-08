@@ -38,26 +38,23 @@
     <input type="checkbox" name="highlight_helped" {% if entry.highlights.helped %}checked{% endif %}> Βοήθησα κάποιον<br>
     <input type="checkbox" name="highlight_difficult" {% if entry.highlights.had_difficult_time %}checked{% endif %}> Είχα δύσκολη στιγμή<br><br>
 
-    <!-- Εικόνα -->
-    <label for="image">Εικόνα ημέρας:</label><br>
-    {% if entry.image_base64 %}
-    <img src="data:image/png;base64,{{ entry.image_base64 }}" class="img-thumbnail" alt="Εικόνα">
-    {% elif entry.image %}
-      <img src="{{ entry.image.url }}" class="img-thumbnail" alt="Εικόνα (παλιά)">
-    {% else %}
-      <p>Δεν υπάρχει εικόνα.</p>
-    {% endif %}
-  
-    <input type="file" name="image"><br><br>
-    {% if entry.image %}
-      <button type="button" id="remove-image-btn" class="btn btn-sm btn-danger mt-2">🗑️ Διαγραφή εικόνας</button>
-    {% endif %}
+<!-- Εικόνα -->
+<label for="image">Εικόνα ημέρας:</label><br>
+{% if entry.image %}
+  <img src="{{ entry.image }}" class="img-thumbnail" alt="Εικόνα">
+{% else %}
+  <p>Δεν υπάρχει εικόνα.</p>
+{% endif %}
 
-    <img id="preview-image" src="#" alt="Προεπισκόπηση εικόνας" style="display: none; max-width: 150px; margin-top: 10px;"><br>
-    {% if entry.image %}
-    <input type="hidden" name="remove_image" id="remove-image-flag" value="false">
-    {% endif %}
-    <br><br>
+<input type="file" name="image"><br><br>
+
+{% if entry.image %}
+  <button type="button" id="remove-image-btn" class="btn btn-sm btn-danger mt-2">🗑️ Διαγραφή εικόνας</button>
+  <input type="hidden" name="remove_image" id="remove-image-flag" value="false">
+{% endif %}
+
+<img id="preview-image" src="#" alt="Προεπισκόπηση εικόνας" style="display: none; max-width: 150px; margin-top: 10px;"><br><br>
+
 
     {% for badge in user.userbadge_set.all %}
       <span class="badge bg-success">{{ badge.badge_type }}</span>
