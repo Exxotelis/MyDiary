@@ -41,7 +41,7 @@
 <!-- Εικόνα -->
 <label for="image">Εικόνα ημέρας:</label><br>
 {% if entry.image %}
-  <img src="{{ entry.image }}" class="img-thumbnail" alt="Εικόνα">
+  <img src="{{ entry.image.url }}" class="img-thumbnail" alt="Εικόνα">
 {% else %}
   <p>Δεν υπάρχει εικόνα.</p>
 {% endif %}
