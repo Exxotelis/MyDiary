@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import DiaryEntry, UserBadge, ProfileImage, UserProfile
+from .models import DiaryEntry, UserBadge, ProfileImage, UserProfile, JournalAnswer
 from datetime import datetime
 import random
 from django.http import JsonResponse, Http404, HttpResponse
@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render
 from .prompts_loader import get_daily_prompt
-from .models import JournalAnswer
 from django.utils import timezone
 from datetime import date
 from django.utils.timezone import now
