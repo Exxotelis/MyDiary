@@ -17,7 +17,6 @@ application = get_wsgi_application()
 
 
 import cloudinary
-import cloudinary.uploader
 from django.conf import settings
 
 cloudinary.config(
