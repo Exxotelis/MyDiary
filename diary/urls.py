@@ -21,6 +21,7 @@ urlpatterns = [
     path('gallery/', views.gallery_view, name='gallery'),
     path('profile/', views.profile_view, name='profile'),
     path('delete-image/<str:date>/', views.delete_image_entry, name='delete_image_entry'),
+    
 
     # authentication
     path('login/', auth_views.LoginView.as_view(template_name='diary/login.html'), name='login'),

@@ -607,4 +607,13 @@ def delete_image_entry(request, date):
         entry.save()
     return redirect('gallery_view')
 
+from django.core.management import call_command
+from django.http import HttpResponse
+from django.contrib.admin.views.decorators import staff_member_required
+
+@login_required  # ή @superuser_required αν το έχεις φτιάξει
+def run_migrations_view(request):
+    call_command('makemigrations')
+    call_command('migrate')
+    return HttpResponse("✅ Migrations completed.")
 

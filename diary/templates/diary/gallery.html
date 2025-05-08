@@ -9,8 +9,8 @@
       <div class="col-md-3 mb-4">
         <div class="card">
           {% if entry.image %}
-            <a href="{{ entry.image.url }}" data-bs-toggle="modal" data-bs-target="#imageModal{{ forloop.counter }}">
-              <img src="{{ entry.image.url }}" class="card-img-top" alt="Image">
+            <a href="{{ entry.image }}" data-bs-toggle="modal" data-bs-target="#imageModal{{ forloop.counter }}">
+              <img src="{{ entry.image }}" class="card-img-top" alt="Image">
             </a>
           {% else %}
             <img src="{% static 'images/placeholder.jpg' %}" class="card-img-top" alt="No image available">
@@ -30,7 +30,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-body p-0">
-              <img src="{{ entry.image.url }}" class="img-fluid w-100" alt="Μεγέθυνση εικόνας">
+              <img src="{{ entry.image }}" class="img-fluid w-100" alt="Μεγέθυνση εικόνας">
             </div>
           </div>
         </div>
@@ -40,8 +40,6 @@
     {% endfor %}
   </div>
 {% endblock %}
-
-
 
 {% block scripts %}
 {{ block.super }}
