@@ -25,7 +25,6 @@ from datetime import timedelta
 from django.conf import settings
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from django.shortcuts import get_object_or_404
-from .utils import get_streak, check_seven_day_streak, convert_image_to_base64
 
 
 
@@ -194,7 +193,6 @@ def entry_view(request, date):
     prompt = get_daily_prompt()
 
     if request.method == 'POST':
-        # Βασικά πεδία
         entry.content = request.POST.get('content')
         entry.mood = request.POST.get('mood')
         entry.tag = request.POST.get('tag')
@@ -205,30 +203,20 @@ def entry_view(request, date):
             'had_difficult_time': 'highlight_difficult' in request.POST,
         }
 
-        # Διαγραφή εικόνας αν ζητήθηκε
-        if request.POST.get('remove_image') == 'true':
+        if 'remove_image' in request.POST and request.POST['remove_image'] == 'true':
+            entry.image.delete(save=False)
             entry.image = None
-            entry.image_base64 = None
 
-        # Νέα εικόνα (μόνο αν δεν ζητήθηκε διαγραφή)
         elif request.FILES.get('image'):
-            image_file = request.FILES['image']
-            entry.image_base64 = convert_image_to_base64(image_file)
-            entry.image = None  # Δεν χρησιμοποιούμε αρχεία σε production
+            entry.image = request.FILES['image']
 
         entry.save()
 
-        # Badges και ειδοποιήσεις
         if DiaryEntry.objects.filter(user=request.user, is_deleted=False).count() == 1:
             messages.success(request, "🏅 Σου απονεμήθηκε το badge: Πρώτη Καταχώρηση!")
 
         if check_seven_day_streak(request.user):
             messages.success(request, "🎉 Συγχαρητήρια! Έχεις καταγράψει τις απαντήσεις σου για 7 συνεχόμενες ημέρες!")
-
-        if check_seven_day_streak(request.user):
-            if not UserBadge.objects.filter(user=request.user, badge_type='7-day-streak').exists():
-                UserBadge.objects.create(user=request.user, badge_type='7-day-streak')
-                messages.success(request, "🏅 Νέο Badge: 7 ημέρες συνεχόμενης καταγραφής!")
 
         return redirect('calendar')
 
@@ -573,8 +561,9 @@ def export_today_answers_pdf(request):
 
 @login_required
 def gallery_view(request):
-    images = DiaryEntry.objects.filter(user=request.user, image_base64__isnull=False).exclude(image_base64='').order_by('-date')
-    return render(request, 'diary/gallery.html', {'images': [e.image_base64 for e in images]})
+    images = DiaryEntry.objects.filter(user=request.user, image__isnull=False).exclude(image='').order_by('-date')
+    return render(request, 'diary/gallery.html', {'images': [e.image.url for e in images]})
+
 
 
 
