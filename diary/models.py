@@ -139,3 +139,12 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.message}"
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.URLField(blank=True, null=True)  # θα μπει URL από Cloudinary
+
+    def __str__(self):
+        return self.user.username
+    

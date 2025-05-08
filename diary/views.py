@@ -607,3 +607,24 @@ def delete_image_entry(request, date):
         entry.save()
     return redirect('gallery_view')
 
+from django.core.management import call_command
+from django.http import HttpResponse
+
+
+@login_required  # ή @superuser_required αν το έχεις φτιάξει
+def run_migrations_view(request):
+    call_command('makemigrations')
+    call_command('migrate')
+    return HttpResponse("✅ Migrations completed.")
+
+
+
+@login_required
+def upload_profile_image(request):
+    if request.method == 'POST':
+        upload_result = cloudinary.uploader.upload(request.FILES['image'])
+        profile = request.user.userprofile
+        profile.profile_image = upload_result['secure_url']
+        profile.save()
+        messages.success(request, "✅ Η εικόνα προφίλ ενημερώθηκε.")
+        return redirect('profile_view')

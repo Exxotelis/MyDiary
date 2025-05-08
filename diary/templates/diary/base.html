@@ -115,12 +115,26 @@
       <!-- Profile Dropdown -->
       <div class="dropdown px-3">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid" alt="">
+          {% if request.user.is_authenticated %}
+            {% if request.user.userprofile.profile_image %}
+              <img src="{{ request.user.userprofile.profile_image }}" cclass="profile-image img-fluid me-3" alt="Προφίλ">
+            {% else %}
+              <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
+            {% endif %}
+          {% endif %}
+
+          
         </a>
         <ul class="dropdown-menu bg-white shadow">
           <li>
             <div class="dropdown-menu-profile-thumb d-flex">
-              <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="">
+              {% if request.user.is_authenticated %}
+              {% if request.user.userprofile.profile_image %}
+                <img src="{{ request.user.userprofile.profile_image }}" cclass="profile-image img-fluid me-3" alt="Προφίλ">
+              {% else %}
+                <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
+              {% endif %}
+            {% endif %}
               <div class="d-flex flex-column">
                 <small>{{ request.user.username }}</small>
                 <a href="#">{{ request.user.email }}</a>

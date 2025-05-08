@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from diary.views import run_migrations_view
 
 
 
@@ -26,7 +27,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('diary.urls')),
-
+    path('run-migrations/', run_migrations_view, name='run_migrations_view'),
 
 ]
 if settings.DEBUG:
