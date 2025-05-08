@@ -609,7 +609,7 @@ def delete_image_entry(request, date):
 
 from django.core.management import call_command
 from django.http import HttpResponse
-from django.contrib.admin.views.decorators import staff_member_required
+
 
 @login_required  # ή @superuser_required αν το έχεις φτιάξει
 def run_migrations_view(request):
