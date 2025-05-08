@@ -587,6 +587,9 @@ def gallery_view(request):
 def profile_view(request):
     user = request.user
 
+    # Δημιουργία UserProfile αν δεν υπάρχει
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+
     total_entries = DiaryEntry.objects.filter(user=user, is_deleted=False).count()
     total_answers = JournalAnswer.objects.filter(user=user).count()
     badges = UserBadge.objects.filter(user=user)
@@ -596,7 +599,9 @@ def profile_view(request):
         'total_entries': total_entries,
         'total_answers': total_answers,
         'badges': badges,
+        'profile': profile
     })
+
 
 @login_required
 def delete_image_entry(request, date):
