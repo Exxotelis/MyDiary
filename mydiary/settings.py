@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'diary', 
     'cloudinary',
-    'whitenoise.runserver_nostatic',
-    'whitenoise',
     'cloudinary_storage',
 ]
 
