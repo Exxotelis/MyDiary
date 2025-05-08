@@ -598,6 +598,13 @@ def profile_view(request):
         'badges': badges,
     })
 
-
+@login_required
+def delete_image_entry(request, date):
+    entry = get_object_or_404(DiaryEntry, user=request.user, date=date)
+    if entry.image:
+        entry.image.delete(save=False)  # Διαγραφή αρχείου
+        entry.image = None              # Αφαίρεση από το model
+        entry.save()
+    return redirect('gallery_view')
 
 

@@ -2,48 +2,46 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
-  <h2 class="mb-4">📸 Συλλογή Εικόνων</h2>
+  <h1>📸 Συλλογή Εικόνων</h1>
 
-  {% if images %}
-    <div class="row" id="image-gallery">
-      {% for entry in images %}
-        <div class="col-md-3 mb-4">
-          <div class="card">
-            {% if entry.image %}
-              <img src="{{ entry.image.url }}" class="card-img-top img-thumbnail gallery-img"
-                   alt="Image" data-bs-toggle="modal" data-bs-target="#imageModal"
-                   data-image="{{ entry.image.url }}">
-            {% else %}
-              <img src="{% static 'images/placeholder.jpg' %}" class="card-img-top" alt="No image">
-            {% endif %}
-            <div class="card-body">
-              <p class="card-text">Ημερομηνία: {{ entry.date }}</p>
-              <form method="post" action="{% url 'delete_image_entry' entry.date %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-danger">🗑️ Διαγραφή</button>
-              </form>
+  <div class="row">
+    {% for entry in images %}
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          {% if entry.image %}
+            <a href="{{ entry.image.url }}" data-bs-toggle="modal" data-bs-target="#imageModal{{ forloop.counter }}">
+              <img src="{{ entry.image.url }}" class="card-img-top" alt="Image">
+            </a>
+          {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" class="card-img-top" alt="No image available">
+          {% endif %}
+          <div class="card-body text-center">
+            <p class="card-text">Ημερομηνία: {{ entry.date }}</p>
+            <form method="post" action="{% url 'delete_image_entry' entry.date %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-danger">🗑️ Διαγραφή</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="imageModal{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-body p-0">
+              <img src="{{ entry.image.url }}" class="img-fluid w-100" alt="Μεγέθυνση εικόνας">
             </div>
           </div>
         </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>Δεν υπάρχουν αποθηκευμένες εικόνες ακόμα.</p>
-  {% endif %}
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img id="modal-image" src="#" class="img-fluid" alt="Μεγέθυνση εικόνας">
       </div>
-    </div>
+    {% empty %}
+      <p>Δεν υπάρχουν αποθηκευμένες εικόνες ακόμα.</p>
+    {% endfor %}
   </div>
-</div>
 {% endblock %}
+
+
 
 {% block scripts %}
 {{ block.super }}
