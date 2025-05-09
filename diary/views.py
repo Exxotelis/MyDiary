@@ -654,23 +654,16 @@ def upload_profile_image(request):
     return redirect('profile_view')
 
 
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from diary.models import DiaryEntry, JournalAnswer, UserBadge, Notification
 
-@user_passes_test(lambda u: u.is_superuser)
-def reset_superuser_data(request):
-    try:
-        # Διαγραφή δεδομένων εφαρμογής
-        DiaryEntry.objects.all().delete()
-        JournalAnswer.objects.all().delete()
-        UserBadge.objects.all().delete()
-        Notification.objects.all().delete()
+def create_superuser(request):
+    if User.objects.filter(is_superuser=True).exists():
+        return HttpResponse("❗ Ήδη υπάρχει superuser.")
 
-        # Διαγραφή όλων των superusers
-        User.objects.filter(is_superuser=True).delete()
-
-        return HttpResponse("✅ Ο superuser και τα δεδομένα διαγράφηκαν.")
-    except Exception as e:
-        return HttpResponse(f"❌ Σφάλμα: {e}")
+    User.objects.create_superuser(
+        username='admin',
+        email='admin@example.com',
+        password='Admind123'
+    )
+    return HttpResponse("✅ Νέος superuser δημιουργήθηκε.")
