@@ -583,23 +583,28 @@ def gallery_view(request):
 
 
 
+from .forms import ProfileImageForm
+
 @login_required
 def profile_view(request):
     user = request.user
-
-    # Δημιουργία UserProfile αν δεν υπάρχει
     profile, _ = UserProfile.objects.get_or_create(user=user)
 
     total_entries = DiaryEntry.objects.filter(user=user, is_deleted=False).count()
     total_answers = JournalAnswer.objects.filter(user=user).count()
     badges = UserBadge.objects.filter(user=user)
+    public_entries = DiaryEntry.objects.filter(user=user, is_public=True)
+
+    form = ProfileImageForm(instance=profile)
 
     return render(request, 'diary/profile.html', {
         'user': user,
+        'profile': profile,
+        'form': form,
         'total_entries': total_entries,
         'total_answers': total_answers,
         'badges': badges,
-        'profile': profile
+        'public_entries': public_entries,
     })
 
 
@@ -613,44 +618,23 @@ def delete_image_entry(request, date):
     return redirect('gallery_view')
 
 
-
-@login_required
-def upload_profile_image(request):
-    if request.method == 'POST':
-        upload_result = cloudinary.uploader.upload(request.FILES['image'])
-        profile = request.user.userprofile
-        profile.profile_image = upload_result['secure_url']
-        profile.save()
-        messages.success(request, "✅ Η εικόνα προφίλ ενημερώθηκε.")
-        return redirect('profile_view')
     
 
 @login_required
 @require_POST
 def upload_profile_image(request):
-    image_file = request.FILES.get('image')
-    if not image_file:
-        messages.error(request, "Δεν επιλέξατε εικόνα.")
-        return redirect('profile')
-
-    # 1. Ανέβασμα στο Cloudinary
-    upload_result = cloudinary.uploader.upload(image_file)
-    image_url = upload_result['secure_url']
-
-    # 2. Απενεργοποιούμε τις προηγούμενες
-    ProfileImage.objects.filter(user=request.user).update(is_active=False)
-
-    # 3. Δημιουργούμε νέα
-    profile_image = ProfileImage.objects.create(
-        user=request.user,
-        image_url=image_url,
-        is_active=True
-    )
-
-    # 4. Ενημερώνουμε το UserProfile
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
-    profile.profile_image = image_url
-    profile.save()
+    form = ProfileImageForm(request.POST, request.FILES, instance=profile)
 
-    messages.success(request, "Η εικόνα προφίλ ενημερώθηκε με επιτυχία.")
-    return redirect('profile')
+    if form.is_valid():
+        # Ανέβασμα στο Cloudinary
+        upload_result = cloudinary.uploader.upload(request.FILES['profile_image'])
+        profile.profile_image = upload_result['secure_url']
+        profile.save()
+        messages.success(request, "Η εικόνα προφίλ ενημερώθηκε με επιτυχία.")
+    else:
+        messages.error(request, "Παρουσιάστηκε σφάλμα.")
+
+    return redirect('profile_view')
+
+
