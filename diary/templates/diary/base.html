@@ -14,10 +14,10 @@
   <link rel="stylesheet" href="{% static 'css/form-pack.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css">
-
 </head>
 <body>
 
+<!-- HEADER -->
 {% block header %}
 <header class="navbar sticky-top flex-md-nowrap">
   <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
@@ -26,7 +26,7 @@
     </a>
   </div>
 
-  <form class="custom-form header-form ms-lg-3 me-lg-auto" action="#" method="get">
+  <form class="custom-form header-form ms-lg-3 me-lg-auto" method="get" action="#">
     <input class="form-control" name="search" type="text" placeholder="Αναζήτηση..." aria-label="Search">
   </form>
 
@@ -61,93 +61,45 @@
           {% endfor %}
         </ul>
       </div>
+
+      <!-- Social Dropdown -->
       <div class="dropdown ps-1">
         <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi-three-dots-vertical"></i>
+          <i class="bi-three-dots-vertical"></i>
         </a>
-
         <div class="dropdown-menu dropdown-menu-social bg-white shadow">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/search.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Google</span>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/spotify.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Spotify</span>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/telegram.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Telegram</span>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/snapchat.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Snapchat</span>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/tiktok.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Tiktok</span>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-4">
-                        <a class="dropdown-item text-center" href="#">
-                            <img src="{% static 'images/social/youtube.png' %}" class="profile-image img-fluid" alt="">
-                            <span class="d-block">Youtube</span>
-                        </a>
-                    </div>
-                </div>
+          <div class="container">
+            <div class="row">
+              {% for icon in 'search spotify telegram snapchat tiktok youtube'.split %}
+              <div class="col-lg-4 col-md-4 col-4">
+                <a class="dropdown-item text-center" href="#">
+                  <img src="{% static 'images/social/'|add:icon|add:'.png' %}" class="profile-image img-fluid" alt="">
+                  <span class="d-block">{{ icon|title }}</span>
+                </a>
+              </div>
+              {% endfor %}
             </div>
+          </div>
         </div>
-    </div>
-      <!-- Profile Dropdown -->
+      </div>
+
+      <!-- Profile -->
       <div class="dropdown px-3">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <!-- Profile Image
-          {% if request.user.is_authenticated %}
-            {% if request.user.userprofile.profile_image %}
-              <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
-            {% else %}
-              <img src="{% static 'images/medium-shot
-          {% if request.user.is_authenticated %}
-            {% if request.user.userprofile.profile_image %}
-              <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
-            {% else %}
-              <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
-            {% endif %}
-          {% endif %}  -->
-          {% if request.user.is_authenticated and request.user.userprofile.profile_image %}
+          {% if request.user.userprofile.profile_image %}
             <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
           {% else %}
             <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
           {% endif %}
-
-          
         </a>
         <ul class="dropdown-menu bg-white shadow">
           <li>
             <div class="dropdown-menu-profile-thumb d-flex">
-              {% if request.user.is_authenticated %}
               {% if request.user.userprofile.profile_image %}
                 <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
               {% else %}
                 <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
               {% endif %}
-            {% endif %}
               <div class="d-flex flex-column">
                 <small>{{ request.user.username }}</small>
                 <a href="#">{{ request.user.email }}</a>
@@ -174,6 +126,7 @@
 </header>
 {% endblock %}
 
+<!-- MAIN LAYOUT -->
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -181,25 +134,19 @@
         <ul class="nav flex-column">
           <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'gallery' %}">
-              <i class="bi bi-images"></i> Γκαλερί
-            </a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
         </ul>
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
       {% block content %}{% endblock %}
-
     </main>
   </div>
 </div>
 
+<!-- JS -->
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -207,6 +154,5 @@
 <script src="{% static 'js/apexcharts.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 {% endblock %}
-
 </body>
 </html>

@@ -5,7 +5,8 @@ body {
 }
  
 #calendar {
-    width: 100%;
+    margin-left: 5.5rem;
+    width: 80%;
     background: #fff;
     padding: 15px;
 }
