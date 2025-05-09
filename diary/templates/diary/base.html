@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
   <link rel="stylesheet" href="{% static 'css/tooplate-mini-finance.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/form-pack.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css">
 
 </head>
@@ -179,10 +181,7 @@
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="title-group mb-3">
-        <h1 class="h2 mb-0">Καθημερινές Ερωτήσεις</h1>
-        <small class="text-muted">Καλώς ήρθες, {{ request.user.username }}</small>
-      </div>
+
 
       {% block content %}{% endblock %}
 

@@ -90,16 +90,32 @@ def index(request):
         'today': today,
     })
 
+from .forms import CustomUserCreationForm
+
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            full_name = request.POST.get('full_name', '').strip()
+            first_name, last_name = '', ''
+            if full_name:
+                parts = full_name.split()
+                first_name = parts[0]
+                last_name = ' '.join(parts[1:]) if len(parts) > 1 else ''
+
+            user = form.save(commit=False)
+            user.email = form.cleaned_data['email']
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
             login(request, user)
-            return redirect('calendar_view')
+            return redirect('index')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'diary/register.html', {'form': form})
+
+
 
 
 @login_required
@@ -638,3 +654,23 @@ def upload_profile_image(request):
     return redirect('profile_view')
 
 
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from diary.models import DiaryEntry, JournalAnswer, UserBadge, Notification
+
+@user_passes_test(lambda u: u.is_superuser)
+def reset_superuser_data(request):
+    try:
+        # Διαγραφή δεδομένων εφαρμογής
+        DiaryEntry.objects.all().delete()
+        JournalAnswer.objects.all().delete()
+        UserBadge.objects.all().delete()
+        Notification.objects.all().delete()
+
+        # Διαγραφή όλων των superusers
+        User.objects.filter(is_superuser=True).delete()
+
+        return HttpResponse("✅ Ο superuser και τα δεδομένα διαγράφηκαν.")
+    except Exception as e:
+        return HttpResponse(f"❌ Σφάλμα: {e}")

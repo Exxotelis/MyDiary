@@ -1,9 +1,89 @@
 {% extends 'diary/base.html' %}
+{% load static %}
+
 {% block content %}
-<h2>Εγγραφή</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Δημιουργία λογαριασμού</button>
-</form>
+<section class="hero-section d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-12 mx-auto">
+        <form class="custom-form" method="post">
+          {% csrf_token %}
+          <h2 class="hero-title text-center mb-4 pb-2">Δημιουργία Λογαριασμού</h2>
+
+          <!-- Όνομα & Επώνυμο -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.first_name }}
+                <label for="first_name">Όνομα</label>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.last_name }}
+                <label for="last_name">Επώνυμο</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email & Username -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.email }}
+                <label for="email">Διεύθυνση Email</label>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.username }}
+                <label for="username">Όνομα χρήστη</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Κωδικός & Επιβεβαίωση -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.password1 }}
+                <label for="password">Κωδικός πρόσβασης</label>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-floating">
+                {{ form.password2 }}
+                <label for="password2">Επιβεβαίωση κωδικού</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Κουμπιά -->
+          <div class="row justify-content-between align-items-center mt-4">
+            <div class="col-md-5">
+              <button type="submit" class="form-control">Εγγραφή</button>
+            </div>
+            <div class="col-md-6 text-end">
+              <p class="mb-0">Έχεις ήδη λογαριασμό;
+              <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
+            </div>
+          </div>
+
+          {% if form.errors %}
+            <div class="alert alert-danger mt-4">
+              Υπάρχουν λάθη στη φόρμα. Διόρθωσέ τα και προσπάθησε ξανά.
+            </div>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-wrap">
+    <video autoplay loop muted class="custom-video" poster="">
+      <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
+      Ο περιηγητής σου δεν υποστηρίζει το video.
+    </video>
+  </div>
+</section>
 {% endblock %}
