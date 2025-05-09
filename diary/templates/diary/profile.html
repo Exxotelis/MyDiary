@@ -7,20 +7,13 @@
 
   <!-- Εικόνα προφίλ -->
   <div class="text-center mb-4">
-<!-- Φόρμα αλλαγής εικόνας -->
-<form method="post" action="{% url 'upload_profile_image' %}" enctype="multipart/form-data" class="text-center mb-5">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Αλλαγή Εικόνας Προφίλ</button>
-  </form>
+    <form method="post" action="{% url 'upload_profile_image' %}" enctype="multipart/form-data" class="text-center mb-5">
+      {% csrf_token %}
+      <input type="file" name="profile_image" accept="image/*" required class="form-control mb-2" style="max-width: 300px; margin: 0 auto;">
+      <button type="submit" class="btn btn-primary">Αλλαγή Εικόνας Προφίλ</button>
+    </form>
+    
   </div>
-
-  <!-- Φόρμα αλλαγής εικόνας -->
-  <form method="post" action="{% url 'upload_profile_image' %}" enctype="multipart/form-data" class="text-center mb-5">
-    {% csrf_token %}
-    <input type="file" name="image" accept="image/*" required class="form-control mb-2" style="max-width: 300px; margin: 0 auto;">
-    <button type="submit" class="btn btn-primary">Αλλαγή Εικόνας Προφίλ</button>
-  </form>
 
   <!-- Στοιχεία Χρήστη -->
   <div class="card mb-4">

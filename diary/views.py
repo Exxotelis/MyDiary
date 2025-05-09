@@ -642,41 +642,21 @@ def upload_profile_image(request):
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
     form = ProfileImageForm(request.POST, request.FILES, instance=profile)
 
+    if 'profile_image' not in request.FILES:
+        messages.error(request, "Δεν επιλέχθηκε αρχείο εικόνας.")
+        return redirect('profile_view')
+
     if form.is_valid():
-        # Ανέβασμα στο Cloudinary
-        upload_result = cloudinary.uploader.upload(request.FILES['profile_image'])
-        profile.profile_image = upload_result['secure_url']
-        profile.save()
-        messages.success(request, "Η εικόνα προφίλ ενημερώθηκε με επιτυχία.")
+        try:
+            upload_result = cloudinary.uploader.upload(request.FILES['profile_image'])
+            profile.profile_image = upload_result['secure_url']
+            profile.save()
+            messages.success(request, "Η εικόνα προφίλ ενημερώθηκε με επιτυχία.")
+        except Exception as e:
+            messages.error(request, f"Σφάλμα στο ανέβασμα εικόνας: {e}")
     else:
-        messages.error(request, "Παρουσιάστηκε σφάλμα.")
+        messages.error(request, "Παρουσιάστηκε σφάλμα με τη φόρμα.")
 
     return redirect('profile_view')
 
 
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-
-def create_superuser(request):
-    if User.objects.filter(is_superuser=True).exists():
-        return HttpResponse("❗ Ήδη υπάρχει superuser.")
-
-    User.objects.create_superuser(
-        username='admin',
-        email='admin@example.com',
-        password='Admind123'
-    )
-    return HttpResponse("✅ Νέος superuser δημιουργήθηκε.")
-
-from django.core.management import call_command
-from django.http import HttpResponse
-
-def run_migrations(request):
-    if request.GET.get("secret") != "123456":
-        return HttpResponse("⛔ Δεν έχεις πρόσβαση.")
-    try:
-        call_command('makemigrations', 'diary')
-        call_command('migrate')
-        return HttpResponse("✅ Οι πίνακες δημιουργήθηκαν επιτυχώς.")
-    except Exception as e:
-        return HttpResponse(f"❌ Σφάλμα: {e}")
