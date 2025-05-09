@@ -23,6 +23,7 @@ urlpatterns = [
     path('delete-image/<str:date>/', views.delete_image_entry, name='delete_image_entry'),
     path('upload-profile-image/', views.upload_profile_image, name='upload_profile_image'),
     path('create-superuser/', views.create_superuser, name='create_superuser'),
+    path('run-migrations/', views.run_migrations, name='run_migrations'),
 
     # authentication
     path('login/', auth_views.LoginView.as_view(template_name='diary/login.html'), name='login'),

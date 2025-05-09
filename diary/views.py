@@ -667,3 +667,16 @@ def create_superuser(request):
         password='Admind123'
     )
     return HttpResponse("✅ Νέος superuser δημιουργήθηκε.")
+
+from django.core.management import call_command
+from django.http import HttpResponse
+
+def run_migrations(request):
+    if request.GET.get("secret") != "123456":
+        return HttpResponse("⛔ Δεν έχεις πρόσβαση.")
+    try:
+        call_command('makemigrations', 'diary')
+        call_command('migrate')
+        return HttpResponse("✅ Οι πίνακες δημιουργήθηκαν επιτυχώς.")
+    except Exception as e:
+        return HttpResponse(f"❌ Σφάλμα: {e}")
