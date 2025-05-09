@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from diary.views import reset_superuser_data
 
 
 
@@ -27,7 +26,7 @@ from diary.views import reset_superuser_data
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('diary.urls')),
-    path('reset-superuser/', reset_superuser_data, name='reset_superuser'),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
