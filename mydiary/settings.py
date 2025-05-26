@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-CSRF_TRUSTED_ORIGINS = ['https://web-production-825c.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-825c.up.railway.app', 'https://reflectivo.site']
 
 
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'diary', 
     'cloudinary',
 ]

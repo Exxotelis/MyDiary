@@ -22,6 +22,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from io import BytesIO
 import cloudinary.uploader
+from django.views.decorators.http import require_GET
+from django.template.loader import render_to_string
 
 import os
 from datetime import timedelta
@@ -689,3 +691,8 @@ def contact(request):
             messages.error(request, "Όλα τα πεδία είναι υποχρεωτικά.")
 
     return render(request, 'diary/contact.html')
+
+@require_GET
+def robots_txt(request):
+    content = render_to_string("robots.txt")
+    return HttpResponse(content, content_type="text/plain")
