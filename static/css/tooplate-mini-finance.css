@@ -1,49 +1,7 @@
-/*
-
-Tooplate 2135 Mini Finance
-
-https://www.tooplate.com/view/2135-mini-finance
-
-*/
-
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
+  VARIABLES
 -----------------------------------------*/
-:root {
-  --white-color:                  #ffffff;
-  --primary-color:                #E63946;
-  --secondary-color:              #F1FAEE;
-  --section-bg-color:             #ececec;
-  --primary-bg-color:             #E63946;
-  --custom-btn-bg-color:          #A8DADC;
-  --custom-btn-bg-hover-color:    #1D3557;
-  --heading-color:                #1D3557;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
-  --border-color:                 #e0e0e5;
-  --link-hover-color:             #E63946;
 
-  --body-font-family:             'Unbounded';
-
-  --h1-font-size:                 74px;
-  --h2-font-size:                 46px;
-  --h3-font-size:                 32px;
-  --h4-font-size:                 28px;
-  --h5-font-size:                 24px;
-  --h6-font-size:                 22px;
-  --p-font-size:                  18px;
-  --menu-font-size:               14px;
-  --btn-font-size:                12px;
-  --copyright-font-size:          10px;
-
-  --border-radius-large:          100px;
-  --border-radius-medium:         20px;
-  --border-radius-small:          10px;
-
-  --font-weight-light:            300;
-  --font-weight-normal:           400;
-  --font-weight-bold:             700;
-}
 
 body {
   background-color: var(--white-color);
@@ -272,6 +230,7 @@ strong {
 
 .dropdown-menu.dropdown-menu-social {
   min-width: 340px;
+  background-color: #000000;
 }
 
 .dropdown-menu-social .profile-image {
@@ -404,7 +363,7 @@ strong {
 }
 
 .navbar {
-  background: var(--white-color);
+  background: transparent;
   border-bottom: 1px solid var(--border-color);
   padding-top: 8px;
   padding-bottom: 8px;

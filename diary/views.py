@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from .models import DiaryEntry, UserBadge, ProfileImage, UserProfile, JournalAnswer
 from datetime import datetime
@@ -38,16 +39,23 @@ from .utils import get_streak, check_seven_day_streak
 JOURNAL_QUESTIONS = {
     1: "Πώς νιώθω σήμερα;",
     2: "Ποια ήταν η πιο δύσκολη στιγμή της ημέρας;",
-    3: "Ποιο ήταν το μεγαλύτερό μου επίτευγμα σήμερα;"
+    3: "Ποιο ήταν το μεγαλύτερό μου επίτευγμα σήμερα;",
 }
 
-
+EXTRA_JOURNAL_QUESTIONS = {
+    4: "Τι έμαθα σήμερα;",
+    5: "Ποια ήταν τα τρία πιο όμορφα πράγματα που συνέβησαν;",
+    6: "Τι θα μπορούσα να είχα κάνει καλύτερα σήμερα;",
+}
 
 @login_required
 def index(request):
     today = timezone.now().date()
 
-    # Απαντήσεις χρήστη για σήμερα (εμφάνιση φόρμας)
+    # Συνδυασμός όλων των ερωτήσεων
+    all_questions = {**JOURNAL_QUESTIONS, **EXTRA_JOURNAL_QUESTIONS}
+
+    # Φόρτωση απαντήσεων για σήμερα
     answers = {
         ans.question_number: ans
         for ans in JournalAnswer.objects.filter(user=request.user, date=today)
@@ -55,9 +63,8 @@ def index(request):
 
     streak = get_streak(request.user)
 
-    # Αποθήκευση απαντήσεων POST
     if request.method == 'POST':
-        for q_num in JOURNAL_QUESTIONS:
+        for q_num in all_questions:
             content = request.POST.get(f'q{q_num}')
             if content:
                 obj, created = JournalAnswer.objects.get_or_create(
@@ -71,10 +78,10 @@ def index(request):
                     obj.save()
         return redirect('index')
 
-    # Πρόσφατη δραστηριότητα (τελευταίες 7 ημέρες)
+    # Πρόσφατη δραστηριότητα
     labels = []
     answer_data = []
-    for i in range(6, -1, -1):  # 7 τελευταίες ημέρες (π.χ. 29/04 έως σήμερα)
+    for i in range(6, -1, -1):
         day = today - timedelta(days=i)
         labels.append(day.strftime('%d/%m'))
         count = JournalAnswer.objects.filter(user=request.user, date=day).count()
@@ -82,6 +89,7 @@ def index(request):
 
     return render(request, 'diary/index.html', {
         'questions': JOURNAL_QUESTIONS,
+        'extra_questions': EXTRA_JOURNAL_QUESTIONS,
         'answers': answers,
         'prompt': get_daily_prompt(),
         'streak': streak,
@@ -89,6 +97,7 @@ def index(request):
         'answer_data': answer_data,
         'today': today,
     })
+
 
 from .forms import CustomUserCreationForm
 
@@ -659,4 +668,24 @@ def upload_profile_image(request):
 
     return redirect('profile_view')
 
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
 
+        if name and email and message:
+            # Εδώ μπορείς να στείλεις email ή να αποθηκεύσεις
+            send_mail(
+                subject=f"Νέο μήνυμα από {name}",
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],
+                fail_silently=True,
+            )
+            messages.success(request, "Το μήνυμά σου στάλθηκε με επιτυχία!")
+            return redirect('contact')
+        else:
+            messages.error(request, "Όλα τα πεδία είναι υποχρεωτικά.")
+
+    return render(request, 'diary/contact.html')

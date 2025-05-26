@@ -1,5 +1,6 @@
 {% extends 'diary/base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}MyDiary - Αρχική{% endblock %}
 
@@ -18,27 +19,44 @@
             <label><strong>{{ prompt }}</strong></label>
             <textarea name="prompt_answer" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
           </div>
-          <button type="submit" class="btn btn-success">Αποθήκευση</button>
+          <button type="submit" class="btn btn-custom">Αποθήκευση</button>
         </form>
       {% else %}
         <p class="text-muted">Δεν υπάρχει ερώτηση για σήμερα.</p>
       {% endif %}
     </div>
 
+
+
     {% if user.is_authenticated %}
       <div class="custom-block bg-white mb-4">
-        <h3 class="mb-4">Ερωτήσεις Ημέρας</h3>
-        <form method="post">{% csrf_token %}
+        <h3 class="mb-4">Ημερήσιο Ερωτηματολόγιο</h3>
+        <form method="post">
+          {% csrf_token %}
+
+          <h5 class="mb-3">Μέρος Α</h5>
           {% for num, question in questions.items %}
             <div class="mb-3">
               <label><strong>{{ question }}</strong></label>
-              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ...">{{ answers|get_item:num|default_if_none:"" }}</textarea>
             </div>
           {% endfor %}
-          <button type="submit" class="btn btn-success">Αποθήκευση Απαντήσεων</button>
+
+          <hr class="my-4">
+
+          <h5 class="mb-3">Μέρος Β</h5>
+          {% for num, question in extra_questions.items %}
+            <div class="mb-3">
+              <label><strong>{{ question }}</strong></label>
+              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ...">{{ answers|get_item:num|default_if_none:"" }}</textarea>
+            </div>
+          {% endfor %}
+
+          <button type="submit" class="btn btn-custom">Αποθήκευση Απαντήσεων</button>
         </form>
       </div>
     {% endif %}
+
 
     <div class="custom-block bg-white">
       <h5 class="mb-4">Πρόσφατη Δραστηριότητα</h5>

@@ -2,44 +2,6 @@
   FORM PACK CSS
 -----------------------------------------*/
 
-
-/*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
------------------------------------------*/
-:root {
-  --body-bg-color:                #181717;
-  --white-color:                  #ffffff;
-  --primary-color:                #E07A5F;
-  --secondary-color:              #F2CC8F;
-  --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #E07A5F;
-  --custom-btn-bg-hover-color:    #F2CC8F;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
-  --link-hover-color:             #F2CC8F;
-
-  --body-font-family:             'Poppins', sans-serif;
-  --heading-font-family:          'Unbounded', sans-serif;
-
-  --h1-font-size:                 62px;
-  --h2-font-size:                 36px;
-  --h3-font-size:                 28px;
-  --h4-font-size:                 24px;
-  --h5-font-size:                 22px;
-  --h6-font-size:                 20px;
-  --p-font-size:                  18px;
-  --menu-font-size:               16px;
-  --btn-font-size:                14px;
-
-  --border-radius-large:          100px;
-  --border-radius-medium:         20px;
-  --border-radius-small:          10px;
-
-  --font-weight-normal:           400;
-  --font-weight-medium:           500;
-  --font-weight-bold:             700;
-}
-
 body {
   background-color: var(--body-bg-color);
   font-family: var(--body-font-family); 

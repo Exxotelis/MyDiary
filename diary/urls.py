@@ -20,6 +20,7 @@ urlpatterns = [
     path('export-today-answers/', views.export_today_answers_pdf, name='export_today_answers_pdf'),
     path('gallery/', views.gallery_view, name='gallery'),
     path('profile/', views.profile_view, name='profile'),
+    path('contact/', views.contact, name='contact'),
     path('delete-image/<str:date>/', views.delete_image_entry, name='delete_image_entry'),
     path('upload-profile-image/', views.upload_profile_image, name='upload_profile_image'),
 

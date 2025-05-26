@@ -31,7 +31,12 @@
 
   {% if user.is_authenticated %}
   <div class="navbar-nav me-lg-2">
-    <div class="nav-item text-nowrap d-flex align-items-center">
+      <div class="nav-item text-nowrap d-flex align-items-center">
+        <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">
+          Σκοτεινό
+        </button>
+
+
 
       <!-- Notifications -->
       <div class="dropdown ps-3">
@@ -59,6 +64,7 @@
           <li class="dropdown-item text-center">Δεν υπάρχουν ειδοποιήσεις.</li>
           {% endfor %}
         </ul>
+        
       </div>
 
       <!-- Social Dropdown -->
@@ -104,6 +110,7 @@
                   <span class="d-block">Tiktok</span>
                 </a>
               </div>
+              
 
               <div class="col-lg-4 col-md-4 col-4">
                 <a class="dropdown-item text-center" href="#">
@@ -125,6 +132,7 @@
             <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="Default">
           {% endif %}
         </a>
+
         <ul class="dropdown-menu bg-white shadow">
           <li>
             <div class="dropdown-menu-profile-thumb d-flex">
@@ -152,30 +160,51 @@
           </li>
         </ul>
       </div>
-
+                <!-- Κουμπί για άνοιγμα offcanvas -->
+                <div class="dropdown px-3">
+                  <a class="btn btn-outline-secondary btn-sm" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
+                    <i class="bi-list"></i>
+                  </a>
+                </div>
     </div>
   </div>
   {% endif %}
 </header>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">                
+  <div class="offcanvas-header">                    
+      <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
+
+    <p class="offcanvas-subtitle">Ημερολόγιο & Καταχωρήσεις</p>
+    <p class="offcanvas-subtitle">Δημιουργήστε το δικό σας ημερολόγιο</p>
+
+      <nav>
+          <ul>
+            <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Εγγραφή</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Επικοινωνία</a></li>
+          </ul>
+      </nav>
+  </div>
+</div>
 {% endblock %}
 
-<!-- MAIN SECTION -->
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
-        </ul>
-      </div>
-    </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      {% block content %}{% endblock %}
+
+    <main class="w-100 px-3 py-4">
+      <div class="container" style="max-width: 1400px;">
+        {% block content %}{% endblock %}
+      </div>
     </main>
+
+
+
   </div>
 </div>
 
@@ -186,5 +215,35 @@
 <script src="{% static 'js/apexcharts.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 {% endblock %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function updateLabel() {
+      if (body.classList.contains('dark-mode')) {
+        toggleBtn.textContent = 'Φωτεινό';
+      } else {
+        toggleBtn.textContent = 'Σκοτεινό';
+      }
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+    }
+
+    updateLabel();
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', mode);
+      updateLabel();
+    });
+  });
+</script>
+
+
 </body>
 </html>
