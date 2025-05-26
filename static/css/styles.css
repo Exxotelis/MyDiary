@@ -45,12 +45,12 @@
 body.dark-mode {
   --body-bg-color:                #181818;
   --section-bg-color:            #242424;
-  --heading-color:               #F2CC8F;
-  --p-color:                     #cccccc;
-  --primary-color:               #F2CC8F;
+  --heading-color:               #bd9759;
+  --p-color:                     #535353;
+  --primary-color:               #f39150;
   --secondary-color:             #E07A5F;
   --custom-btn-bg-color:         #3A506B;
-  --custom-btn-bg-hover-color:   #5BC0BE;
+  --custom-btn-bg-hover-color:   #408382;
   --border-color:                #444;
   --link-hover-color:            #E07A5F;
   --navbar-bg-color:             #1e1e1e;

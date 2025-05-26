@@ -1,0 +1,328 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Title -->
+  <title>{% block title %}Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση{% endblock %}</title>
+  <meta name="description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <link rel="canonical" href="https://reflectivo.site/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
+  <meta property="og:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reflectivo.site/">
+  <meta property="og:image" content="https://reflectivo.site/static/images/og-banner.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
+  <meta name="twitter:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <meta name="twitter:image" content="https://reflectivo.site/static/images/og-banner.png">
+
+  <!-- Favicon -->
+     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+  <!-- Fonts & CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/lava.css' %}">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+
+
+  <!-- Header/Navbar -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="{% url 'index' %}" class="Reflectivo logo">
+              <img src="{% static 'images/reflectivo-logo.png' %}" alt="Reflectivo Logo">
+          </a>
+          <!-- ***** Logo End ***** -->
+            <ul class="nav">
+              
+              <li class="scroll-to-section"><a href="#welcome" class="menu-item active">Αρχική</a></li>
+              <li class="scroll-to-section"><a href="#about" class="menu-item">Σχετικά</a></li>
+              <li class="scroll-to-section"><a href="#testimonials" class="menu-item">Μαρτυρίες</a></li>
+              <li><a href="{% url 'register' %}" class="menu-item">Εγγραφή</a></li>
+              <li><a href="{% url 'login' %}" class="menu-item">Σύνδεση</a></li>
+            </ul>
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Welcome Section -->
+  <div class="welcome-area" id="welcome">
+    <div class="header-text">
+      <div class="container">
+        <div class="row">
+          <div class="left-text col-lg-6 col-md-12 col-sm-12">
+            <h1>Καθημερινή καταγραφή που <em>αναπτύσσει</em></h1>
+            <p>Το Reflectivo είναι ο προσωπικός σου χώρος για στοχασμό, ενδοσκόπηση και εξέλιξη.</p>
+            <a href="{% url 'register' %}" ><button type="submit" class="btn btn-outline-secondary">Ξεκίνα Τώρα</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="features-item">
+            <div class="features-icon">
+             
+              <img src="/static/images/lava/features-icon-1.png" alt="">
+              <h4>Στοχασμός</h4>
+              <p>Καταγραφή σκέψεων για αυτογνωσία και προσωπική ηρεμία.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="features-item">
+            <div class="features-icon">
+             
+              <img src="/static/images/lava/features-icon-2.png" alt="">
+              <h4>Καθημερινή Συνέπεια</h4>
+              <p>Μείνε πιστός στις συνήθειές σου και δες την πρόοδο να έρχεται.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="features-item">
+            <div class="features-icon">
+              
+              <img src="/static/images/lava/features-icon-3.png" alt="">
+              <h4>Ιδιωτικότητα</h4>
+              <p>Τα δεδομένα σου ανήκουν αποκλειστικά σε εσένα. Κανείς άλλος.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ***** Features Big Item Start ***** -->
+  <section class="section" id="promotion">
+    <div class="container">
+      <div class="row">
+        <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
+          data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+          <img src="{% static 'images/lava/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="Reflectivo App">
+        </div>
+        <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix">
+          <ul>
+            <li data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+              <img src="{% static 'images/lava/about-icon-01.png' %}" alt="">
+              <div class="text">
+                <h4>Προσωπική Εμπειρία Χρήστη</h4>
+                <p>Η πλατφόρμα σχεδιάστηκε με γνώμονα την απλότητα και την ασφάλεια. Εσύ κρατάς τον έλεγχο των δεδομένων σου.</p>
+              </div>
+            </li>
+            <li data-scroll-reveal="enter right move 30px over 0.6s after 0.5s">
+              <img src="{% static 'images/lava/about-icon-02.png' %}" alt="">
+              <div class="text">
+                <h4>Πραγματικά Χρήσιμα Εργαλεία</h4>
+                <p>Από ημερήσιες ερωτήσεις μέχρι σταθερή πρόοδο – όλα συνδυάζονται για να ενισχύσουν την προσωπική σου εξέλιξη.</p>
+              </div>
+            </li>
+            <li data-scroll-reveal="enter right move 30px over 0.6s after 0.6s">
+              <img src="{% static 'images/lava/about-icon-03.png' %}" alt="">
+              <div class="text">
+                <h4>Εστίαση στην Συνέπεια</h4>
+                <p>Αναπτύξτε μια υγιή ρουτίνα καταγραφής, αποκτώντας badges και ανατροφοδότηση με ουσία.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Features Big Item End ***** -->
+
+  <div class="right-image-decor"></div>
+
+  <!-- ***** Testimonials Starts ***** -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="center-heading">
+            <h2>Τι Λένε <em>Οι Χρήστες</em></h2>
+            <p>Αληθινές εμπειρίες ανθρώπων που χρησιμοποιούν το Reflectivo καθημερινά για να καταγράψουν, να επεξεργαστούν και να αναπτυχθούν.</p>
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-12 col-sm-12 mobile-bottom-fix-big"
+          data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+          <div class="owl-carousel owl-theme">
+            <div class="item service-item">
+              <div class="author">
+                <i><img src="{% static 'images/lava/testimonial-author-1.png' %}" alt="Author One"></i>
+              </div>
+              <div class="testimonial-content">
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <h4>Νίκος Παπαδόπουλος</h4>
+                <p>“Η καταγραφή των σκέψεών μου έγινε καθημερινή συνήθεια – με βοήθησε να καταλάβω τον εαυτό μου.”</p>
+                <span>Ψυχολόγος</span>
+              </div>
+            </div>
+            <div class="item service-item">
+              <div class="author">
+                <i><img src="{% static 'images/lava/testimonial-author-1.png' %}" alt="Second Author"></i>
+              </div>
+              <div class="testimonial-content">
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <h4>Ελένη Μαρκοπούλου</h4>
+                <p>“Το Reflectivo είναι το προσωπικό μου safe space – απλό, όμορφο και με νόημα.”</p>
+                <span>Δασκάλα</span>
+              </div>
+            </div>
+            <div class="item service-item">
+              <div class="author">
+                <i><img src="{% static 'images/lava/testimonial-author-1.png' %}" alt="Author Third"></i>
+              </div>
+              <div class="testimonial-content">
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <h4>Γιώργος Τ.</h4>
+                <p>“Πολύ πιο χρήσιμο απ’ όσο περίμενα. Εύχρηστο interface, όμορφος σχεδιασμός και ωραία badges.”</p>
+                <span>Σύμβουλος</span>
+              </div>
+            </div>
+            <div class="item service-item">
+              <div class="author">
+                <i><img src="{% static 'images/lava/testimonial-author-1.png' %}" alt="Fourth Author"></i>
+              </div>
+              <div class="testimonial-content">
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <h4>Άννα Σ.</h4>
+                <p>"Με βοηθάει να μείνω συνεπής και οργανωμένη. Το προτείνω ανεπιφύλακτα!"</p>
+                <span>Φοιτήτρια</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Testimonials Ends ***** -->
+
+
+
+  <!-- ***** Footer Start ***** -->
+  <footer id="contact-us">
+    <div class="container">
+      <div class="footer-content">
+        <div class="row">
+          <!-- ***** Contact Form Start ***** -->
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="contact-form">
+              <form id="contact-form" action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <fieldset>
+                      <input name="name" type="text" id="name" placeholder="Ονοματεπώνυμο" required style="background-color: rgba(250,250,250,0.3);">
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <fieldset>
+                      <input name="email" type="email" id="email" placeholder="Email" required style="background-color: rgba(250,250,250,0.3);">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" id="message" placeholder="Το μήνυμά σου" required style="background-color: rgba(250,250,250,0.3);"></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="main-button">Αποστολή Μηνύματος</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- ***** Contact Form End ***** -->
+
+          <div class="right-content col-lg-6 col-md-12 col-sm-12">
+            <h2>Reflectivo <em>Σκέψη χωρίς όρια</em></h2>
+            <p>Το Reflectivo είναι ο χώρος σου για προσωπική ενδοσκόπηση, αυτοβελτίωση και καθημερινή ηρεμία.</p>
+            <ul class="social">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="sub-footer">
+            <p>&copy; 2025 Reflectivo – Όλα τα δικαιώματα διατηρούνται.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/scrollreveal.min.js' %}"></script>
+<script src="{% static 'js/waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/imgfix.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+
+</html>

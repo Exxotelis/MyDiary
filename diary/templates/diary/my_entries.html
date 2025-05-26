@@ -33,12 +33,12 @@
           {% if entry.is_public %}<em>(Δημόσιο)</em>{% endif %}
 
           <br>
-          <a href="{% url 'entry_view' entry.date %}" class="btn btn-sm btn-outline-secondary mt-2">✏️ Επεξεργασία -- </a>
+          <a href="{% url 'entry_view' entry.date %}" class="btn btn-sm btn-custom mt-2"> Επεξεργασία -- </a>
 
           <!-- ✅ Διαγραφή με soft delete -->
           <form method="post" action="{% url 'delete_entry' entry.date %}" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-outline-danger mt-2"
+            <button type="submit" class="btn btn-sm btn-custom mt-2"
               onclick="return confirm('Είσαι σίγουρος ότι θέλεις να μεταφέρεις αυτή την καταχώρηση στον Κάδο;')">
               🗑️ Μεταφορά στον Κάδο
             </button>

@@ -2,70 +2,58 @@
 {% load static %}
 
 {% block content %}
-<section class="hero-section d-flex justify-content-center align-items-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-12 mx-auto">
-        <form class="custom-form" method="post">
+<section class="hero-section d-flex justify-content-center align-items-center min-vh-100 position-relative overflow-hidden">
+
+  <!-- BACKGROUND VIDEO -->
+  <div class="video-wrap position-absolute top-0 start-0 w-100 h-100 z-n1">
+    <video autoplay loop muted playsinline class="custom-video w-100 h-100 object-fit-cover">
+      <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
+      Ο περιηγητής σου δεν υποστηρίζει το video.
+    </video>
+  </div>
+
+  <!-- FORM CONTAINER -->
+  <div class="container position-relative z-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <form class="custom-form bg-white p-4 rounded-4 shadow-lg" method="post">
           {% csrf_token %}
           <h2 class="hero-title text-center mb-4 pb-2">Δημιουργία Λογαριασμού</h2>
 
-          <!-- Όνομα & Επώνυμο -->
           <div class="row">
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.first_name }}
-                <label for="first_name">Όνομα</label>
-              </div>
+              <div class="form-floating">{{ form.first_name }}<label for="first_name">Όνομα</label></div>
             </div>
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.last_name }}
-                <label for="last_name">Επώνυμο</label>
-              </div>
+              <div class="form-floating">{{ form.last_name }}<label for="last_name">Επώνυμο</label></div>
             </div>
           </div>
 
-          <!-- Email & Username -->
           <div class="row">
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.email }}
-                <label for="email">Διεύθυνση Email</label>
-              </div>
+              <div class="form-floating">{{ form.email }}<label for="email">Email</label></div>
             </div>
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.username }}
-                <label for="username">Όνομα χρήστη</label>
-              </div>
+              <div class="form-floating">{{ form.username }}<label for="username">Όνομα χρήστη</label></div>
             </div>
           </div>
 
-          <!-- Κωδικός & Επιβεβαίωση -->
           <div class="row">
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.password1 }}
-                <label for="password">Κωδικός πρόσβασης</label>
-              </div>
+              <div class="form-floating">{{ form.password1 }}<label for="password">Κωδικός</label></div>
             </div>
             <div class="col-md-6 mb-3">
-              <div class="form-floating">
-                {{ form.password2 }}
-                <label for="password2">Επιβεβαίωση κωδικού</label>
-              </div>
+              <div class="form-floating">{{ form.password2 }}<label for="password2">Επιβεβαίωση</label></div>
             </div>
           </div>
 
-          <!-- Κουμπιά -->
           <div class="row justify-content-between align-items-center mt-4">
             <div class="col-md-5">
-              <button type="submit" class="form-control">Εγγραφή</button>
+              <button type="submit" class="form-control btn btn-primary">Εγγραφή</button>
             </div>
             <div class="col-md-6 text-end">
               <p class="mb-0">Έχεις ήδη λογαριασμό;
-              <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
+                <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
             </div>
           </div>
 
@@ -79,11 +67,6 @@
     </div>
   </div>
 
-  <div class="video-wrap">
-    <video autoplay loop muted class="custom-video" poster="">
-      <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
-      Ο περιηγητής σου δεν υποστηρίζει το video.
-    </video>
-  </div>
 </section>
 {% endblock %}
+

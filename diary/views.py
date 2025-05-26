@@ -35,6 +35,10 @@ from .utils import get_streak, check_seven_day_streak
 
 
 
+def home_view(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    return render(request, 'diary/home.html')
 
 
 
@@ -655,7 +659,7 @@ def upload_profile_image(request):
 
     if 'profile_image' not in request.FILES:
         messages.error(request, "Δεν επιλέχθηκε αρχείο εικόνας.")
-        return redirect('profile_view')
+        return redirect('profile')
 
     if form.is_valid():
         try:
@@ -668,7 +672,8 @@ def upload_profile_image(request):
     else:
         messages.error(request, "Παρουσιάστηκε σφάλμα με τη φόρμα.")
 
-    return redirect('profile_view')
+    return redirect('profile')
+
 
 def contact(request):
     if request.method == 'POST':

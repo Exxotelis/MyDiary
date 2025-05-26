@@ -68,7 +68,11 @@
   <div class="col-lg-5 col-12">
     <div class="custom-block custom-block-profile text-center bg-white mb-4">
       <div class="custom-block-profile-image-wrap mb-4">
-        <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="custom-block-profile-image img-fluid" alt="">
+                      {% if request.user.userprofile.profile_image %}
+                        <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
+                      {% else %}
+                        <img src="{% static 'images/profile-img.png' %}" class="profile-image img-fluid me-3" alt="Default">
+                      {% endif %}
         <a href="#" class="bi-pencil-square custom-block-edit-icon"></a>
       </div>
       <p class="d-flex flex-wrap mb-2"><strong>Όνομα:</strong> <span>{{ request.user.username }}</span></p>
