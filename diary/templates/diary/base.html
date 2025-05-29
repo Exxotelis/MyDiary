@@ -32,14 +32,15 @@
   <link rel="stylesheet" href="{% static 'css/tooplate-mini-finance.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/form-pack.css' %}">
-  <link rel="stylesheet" href="{% static 'css/lava.css' %}">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
 </head>
 
 
 <body>
-
+<div class="d-flex flex-column min-vh-100">
 {% block header %}
 <header class="navbar sticky-top flex-md-nowrap">
 <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
@@ -213,6 +214,11 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Εγγραφή</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Επικοινωνία</a></li>
           </ul>
+          <br>
+                  <hr class="w-100 my-4">
+        <div class="text-center">
+          <a href="{% url 'logout' %}" class="nav-link text-danger"><i class="bi-box-arrow-right"></i> Αποσύνδεση</a>
+        </div>
       </nav>
   </div>
 </div>
@@ -232,7 +238,7 @@
 </div>
 
 {% block footer %}
-<footer class="text-center py-4 mt-5" style="background-color: var(--section-bg-color); color: var(--p-color); font-size: var(--copyright-font-size);">
+<footer class="text-center py-4 mt-auto">
   <div class="container">
     <div class="mb-2">
       <a href="{% url 'home' %}" class="text-decoration-none me-3">Αρχική</a>
@@ -295,6 +301,6 @@
 </script>
 
 
-
+</div>
 </body>
 </html>

@@ -24,14 +24,17 @@ from io import BytesIO
 import cloudinary.uploader
 from django.views.decorators.http import require_GET
 from django.template.loader import render_to_string
-
+from django.db.models import Count
+from django.core.serializers.json import DjangoJSONEncoder
+import json
 import os
 from datetime import timedelta
 from django.conf import settings
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from django.shortcuts import get_object_or_404
 from .utils import get_streak, check_seven_day_streak
-
+from .forms import SubscriberForm
+from django.contrib import messages
 
 
 
@@ -83,6 +86,22 @@ def index(request):
                     obj.answer = content
                     obj.save()
         return redirect('index')
+        # Pie Chart: Mood Distribution
+    entries = DiaryEntry.objects.filter(user=request.user, is_deleted=False)
+    mood_data = (
+        entries.values('mood')
+        .annotate(total=Count('id'))
+        .order_by('-total')
+    )
+
+    # Bar Chart: Entries per Tag
+    tag_data = (
+        entries.values('tag')
+        .annotate(total=Count('id'))
+        .order_by('tag')
+    )
+    mood_data_list = list(mood_data)
+    tag_data_list = list(tag_data)
 
     # Πρόσφατη δραστηριότητα
     labels = []
@@ -102,6 +121,8 @@ def index(request):
         'labels': labels,
         'answer_data': answer_data,
         'today': today,
+        'mood_data': list(mood_data),    
+        'tag_data': list(tag_data),
     })
 
 
@@ -701,3 +722,16 @@ def contact(request):
 def robots_txt(request):
     content = render_to_string("robots.txt")
     return HttpResponse(content, content_type="text/plain")
+
+
+
+
+def subscribe_view(request):
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Εγγραφήκατε με επιτυχία!")
+        else:
+            messages.error(request, "Το email είναι ήδη εγγεγραμμένο.")
+    return redirect(request.META.get('HTTP_REFERER', '/'))

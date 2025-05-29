@@ -157,14 +157,14 @@ a.main-button-slider {
 }
 
 a.main-button-slider:hover {
-  background-color: #f1556a;
+  background-color: #F2CC8F;
 }
 
 a.main-button {
   font-size: 14px;
   border-radius: 25px;
   padding: 15px 25px;
-  background-color: #f4813f;
+  background-color: #E07A5F;
   text-transform: uppercase;
   color: #fff;
   font-weight: 600;
@@ -176,7 +176,7 @@ a.main-button {
 }
 
 a.main-button:hover {
-  background-color: #f1556a;
+  background-color: #F2CC8F;
 }
 
 button.main-button {
@@ -186,7 +186,7 @@ button.main-button {
   font-size: 14px;
   border-radius: 25px;
   padding: 15px 25px;
-  background-color: #f4813f;
+  background-color: #E07A5F;
   text-transform: uppercase;
   color: #fff;
   font-weight: 600;
@@ -198,7 +198,8 @@ button.main-button {
 }
 
 button.main-button:hover {
-  background-color: #f1556a;
+  background-color: #A8DADC;
+  color: #4a4a4a;
 }
 
 
@@ -536,7 +537,7 @@ header
 }
 
 .header-area.header-sticky .nav li a.active {
-  color: #fba70b;
+  color: #E07A5F;
 }
 
 @media (max-width: 1200px) {
@@ -678,7 +679,7 @@ welcome
 
 .welcome-area .header-text h1 em {
   font-style: normal;
-  color: #fba70b;
+  color: #E07A5F;
 }
 
 .welcome-area .header-text p {
@@ -689,6 +690,10 @@ welcome
   letter-spacing: 0.25px;
   margin-bottom: 40px;
   position: relative;
+}
+.welcome-area .main-button {
+  margin-top: 20px;
+  display: inline-block;
 }
 
 @media (max-width: 1420px) {
@@ -1059,7 +1064,7 @@ footer .right-content {
 
 .footer-content .right-content h2 em {
   font-style: normal;
-  color: #fba70b;
+  color: #E07A5F;
 }
 
 .footer-content .right-content p {
@@ -1071,7 +1076,7 @@ footer .right-content {
 }
 
 .footer-content .right-content a:hover {
-  color: #FC3;
+  color: #A8DADC;
 }
 
 footer .social {
@@ -1106,8 +1111,8 @@ footer .social li a {
 }
 
 footer .social li a:hover {
-  background-color: #fba70b;
-  border-color: #fba70b;
+  background-color: #E07A5F;
+  border-color: #E07A5F;
   color: #fff;
 }
 

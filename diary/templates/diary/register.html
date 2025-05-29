@@ -1,72 +1,165 @@
-{% extends 'diary/base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Reflectivo – Το προσωπικó σου ημερολóγιο για καθημερινή ενδοσκόπηση{% endblock %}</title>
+  <meta name="description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ύσεκινα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <link rel="canonical" href="https://reflectivo.site/">
+  <meta property="og:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
+  <meta property="og:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ύσεκινα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reflectivo.site/">
+  <meta property="og:image" content="https://reflectivo.site/static/images/og-banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
+  <meta name="twitter:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ύσεκινα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
+  <meta name="twitter:image" content="https://reflectivo.site/static/images/og-banner.png">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/form-pack.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="hero-section d-flex justify-content-center align-items-center min-vh-100 position-relative overflow-hidden">
+    <div class="video-wrap position-absolute top-0 start-0 w-100 h-100 z-n1">
+      <video autoplay loop muted playsinline class="custom-video w-100 h-100 object-fit-cover">
+        <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
+        Ο περιηγητής σας δεν υποστηρίζει την προβολή βίντεο.
+      </video>
+    </div>
 
-{% block content %}
-<section class="hero-section d-flex justify-content-center align-items-center min-vh-100 position-relative overflow-hidden">
-
-  <!-- BACKGROUND VIDEO -->
-  <div class="video-wrap position-absolute top-0 start-0 w-100 h-100 z-n1">
-    <video autoplay loop muted playsinline class="custom-video w-100 h-100 object-fit-cover">
-      <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
-      Ο περιηγητής σου δεν υποστηρίζει το video.
-    </video>
-  </div>
-
-  <!-- FORM CONTAINER -->
-  <div class="container position-relative z-1">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8">
-        <form class="custom-form bg-white p-4 rounded-4 shadow-lg" method="post">
-          {% csrf_token %}
-          <h2 class="hero-title text-center mb-4 pb-2">Δημιουργία Λογαριασμού</h2>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.first_name }}<label for="first_name">Όνομα</label></div>
+    <header class="site-header w-100">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-12 col-12 d-flex">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+              <img src="{% static 'images/reflectivo-logo.png' %}" alt="Reflectivo Logo" style="height: 38px;">
+            </a>
+            <ul class="social-icon d-flex justify-content-center align-items-center mx-auto">
+              <span class="text-white me-4 d-none d-lg-block">Ακολουθήστε μας</span>
+                <li class="social-icon-item">
+                  <a href="https://www.instagram.com/reflectivo" class="social-icon-link bi-instagram" title="Instagram"></a>
+                </li>
+                <li class="social-icon-item">
+                  <a href="https://www.facebook.com/reflectivo" class="social-icon-link bi-facebook" title="Facebook"></a>
+                </li>
+            </ul>
+            <div>
+              <a href="#" class="custom-btn custom-border-btn btn" data-bs-toggle="modal" data-bs-target="#subscribeModal">
+                Ενημερώστε με <i class="bi-arrow-right ms-2"></i>
+              </a>
             </div>
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.last_name }}<label for="last_name">Επώνυμο</label></div>
-            </div>
+            <a class="bi-list offcanvas-icon" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu"></a>
           </div>
+        </div>
+      </div>
+    </header>
 
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.email }}<label for="email">Email</label></div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.username }}<label for="username">Όνομα χρήστη</label></div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.password1 }}<label for="password">Κωδικός</label></div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="form-floating">{{ form.password2 }}<label for="password2">Επιβεβαίωση</label></div>
-            </div>
-          </div>
-
-          <div class="row justify-content-between align-items-center mt-4">
-            <div class="col-md-5">
-              <button type="submit" class="form-control btn btn-primary">Εγγραφή</button>
-            </div>
-            <div class="col-md-6 text-end">
-              <p class="mb-0">Έχεις ήδη λογαριασμό;
-                <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
-            </div>
-          </div>
-
-          {% if form.errors %}
-            <div class="alert alert-danger mt-4">
-              Υπάρχουν λάθη στη φόρμα. Διόρθωσέ τα και προσπάθησε ξανά.
-            </div>
-          {% endif %}
-        </form>
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
+        <p class="offcanvas-subtitle">Ημερολόγιο & Καταχωρήσεις</p>
+        <p class="offcanvas-subtitle">Δημιουργήστε το δικό σας ημερολόγιο</p>
+        <nav>
+          <ul>
+            <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Εγγραφή</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Επικοινωνία</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
-  </div>
 
-</section>
-{% endblock %}
+    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Κλείσιμο"></button>
+          </div>
+          <div class="modal-body">
+            <form action="{% url 'subscribe' %}" method="post" class="custom-form mt-lg-4 mt-2" role="form">
+              {% csrf_token %}
+              <h2 class="modal-title" id="subscribeModalLabel">Μείνετε ενημερωμένοι</h2>
+              <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="το@email.com" required>
+              <button type="submit" class="form-control">Εγγραφή</button>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <p>Με την εγγραφή σας, αποδέχεστε την Πολιτική Απορρήτου</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="container position-relative z-1">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <form class="custom-form" method="post">
+            {% csrf_token %}
+            <h2 class="hero-title text-center mb-4 pb-2">Δημιουργία Λογαριασμού</h2>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.first_name }}<label for="first_name">Όνομα</label></div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.last_name }}<label for="last_name">Επώνυμο</label></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.email }}<label for="email">Email</label></div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.username }}<label for="username">Όνομα χρήστη</label></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.password1 }}<label for="password1">Κωδικός</label></div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">{{ form.password2 }}<label for="password2">Επιβεβαίωση Κωδικού</label></div>
+              </div>
+            </div>
+            <div class="row justify-content-between align-items-center mt-4">
+              <div class="col-md-5">
+                <button type="submit" class="form-control btn btn-primary">Εγγραφή</button>
+              </div>
+              <div class="col-md-6 text-end">
+                <p class="mb-0">Έχεις ήδη λογαριασμό; <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
+              </div>
+            </div>
+            {% if form.errors %}
+              <div class="alert alert-danger mt-4">
+                Υπάρχουν λάθη στη φόρμα. Ελέγξτε τα πεδία και προσπαθήστε ξανά.
+              </div>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block scripts %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  {% endblock %}
+
+  {% block extra_scripts %}
+    <script>
+      $(document).ready(function() {
+        // Εδώ μπορείτε να προσθέσετε custom JavaScript
+      });
+    </script>
+  {% endblock %}
+</body>
+</html>

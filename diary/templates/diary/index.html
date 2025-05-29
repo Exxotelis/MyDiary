@@ -16,8 +16,8 @@
         <div class="alert alert-info"><strong>Σκέψου:</strong> {{ prompt }}</div>
         <form method="post">{% csrf_token %}
           <div class="mb-4">
-            <label><strong>{{ prompt }}</strong></label>
-            <textarea name="prompt_answer" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+            <label for="q{{ num }}"><strong>{{ question }}</strong></label>
+            <textarea id="q{{ num }}" name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
           </div>
           <button type="submit" class="btn btn-custom">Αποθήκευση</button>
         </form>
@@ -93,51 +93,73 @@
       <div class="custom-block-bottom-item"><a href="{% url 'trash' %}" class="d-flex flex-column"><i class="custom-block-icon bi-trash"></i><small>Κάδος</small></a></div>
     </div>
 
-    <div id="chart" class="mt-4"></div>
+    <div class="custom-block bg-white mt-4">
+      <h5 class="mb-4">Δραστηριότητα ανά Ετικέτα</h5>
+      <div id="chart"></div>
+      <p class="text-muted">Οι πιο συχνές ετικέτες που χρησιμοποιείς.</p>
+      <p class="text-muted">Κάνε κλικ σε μια ετικέτα για να δεις όλες τις καταχωρήσεις που την περιέχουν.</p>
+      <p class="text-muted">Αν δεν βλέπεις ετικέτες, ίσως να μην έχεις προσθέσει ακόμα.</p>
+      <p class="text-muted">Μπορείς να προσθέσεις ετικέτες στις καταχωρήσεις σου για καλύτερη οργάνωση.</p>
+
+      
   </div>
 </div>
 {% endblock %}
 
+<!-- Hidden JSON data -->
+{{ mood_data|json_script:"mood-data" }}
+{{ tag_data|json_script:"tag-data" }}
+{{ labels|json_script:"labels-data" }}
+{{ answer_data|json_script:"answers-data" }}
+
 {% block scripts %}
 {{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    new ApexCharts(document.querySelector("#pie-chart"), {
-      chart: { type: 'pie', width: 380 },
-      series: [13, 43, 22],
-      labels: ['Balance', 'Expense', 'Credit Loan'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: { width: 200 },
-          legend: { position: 'bottom' }
-        }
-      }]
-    }).render();
+    try {
+      const moodData = JSON.parse(document.getElementById("mood-data").textContent);
+      const tagData = JSON.parse(document.getElementById("tag-data").textContent);
+      const labels = JSON.parse(document.getElementById("labels-data").textContent);
+      const answerData = JSON.parse(document.getElementById("answers-data").textContent);
 
-    new ApexCharts(document.querySelector("#chart"), {
-      chart: { type: 'bar', height: 350 },
-      series: [
-        { name: 'Income', data: [44, 55, 57, 56, 61, 58, 63, 60, 66] },
-        { name: 'Expense', data: [76, 85, 101, 98, 87, 105, 91, 114, 94] },
-        { name: 'Transfer', data: [35, 41, 36, 26, 45, 48, 52, 53, 41] }
-      ],
-      plotOptions: {
-        bar: { horizontal: false, columnWidth: '55%', endingShape: 'rounded' }
-      },
-      dataLabels: { enabled: false },
-      stroke: { show: true, width: 2, colors: ['transparent'] },
-      xaxis: { categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'] },
-      yaxis: { title: { text: '$ (thousands)' } },
-      fill: { opacity: 1 },
-      tooltip: {
-        y: {
-          formatter: val => "$ " + val + " thousands"
+      // Pie Chart (Mood Distribution)
+      new ApexCharts(document.querySelector("#pie-chart"), {
+        chart: { type: 'pie', width: 360 },
+        series: moodData.map(d => d.total),
+        labels: moodData.map(d => d.mood || 'Άγνωστο'),
+      }).render();
+
+      // Bar Chart (Tag Distribution)
+      new ApexCharts(document.querySelector("#chart"), {
+        chart: { type: 'bar', height: 350 },
+        series: [{
+          name: 'Καταγραφές',
+          data: tagData.map(d => d.total)
+        }],
+        xaxis: {
+          categories: tagData.map(d => d.tag || 'Άγνωστο')
         }
-      }
-    }).render();
+      }).render();
+
+      // Line Chart (Activity over time)
+      new ApexCharts(document.querySelector("#line-chart"), {
+        chart: { type: 'line', height: 300 },
+        series: [{
+          name: 'Απαντήσεις',
+          data: answerData
+        }],
+        xaxis: {
+          categories: labels
+        }
+      }).render();
+    } catch (e) {
+      console.error("ApexCharts Error:", e);
+    }
   });
 </script>
-
-  
 {% endblock %}
+
+
+

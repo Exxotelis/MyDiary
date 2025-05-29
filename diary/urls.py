@@ -25,6 +25,7 @@ urlpatterns = [
     path('delete-image/<str:date>/', views.delete_image_entry, name='delete_image_entry'),
     path('upload-profile-image/', views.upload_profile_image, name='upload_profile_image'),
     path("robots.txt", views.robots_txt, name="robots_txt"),
+    path('subscribe/', views.subscribe_view, name='subscribe'),
 
     # authentication
     path('login/', auth_views.LoginView.as_view(template_name='diary/login.html'), name='login'),
