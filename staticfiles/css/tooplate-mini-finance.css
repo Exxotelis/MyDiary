@@ -715,9 +715,7 @@ strong {
   flex: auto;
 }
 
-.custom-block-faq p {
-  font-size: var(--menu-font-size);
-}
+
 
 .custom-block-contact p a {
   color: var(--heading-color);

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 /*---------------------------------------
   VARIABLES
 -----------------------------------------*/
@@ -75,7 +76,7 @@ body {
   color: var(--navbar-text-color) !important;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 
 #calendar {
   margin-left: 5.5rem;
@@ -177,7 +178,7 @@ body {
 }
 
 .btn-custom:hover {
-  background-color: var(--custom-btn-bg-hover-color);
+  background-color: var(--custom-btn-bg-color);
   color: var(--white-color);
 }
 
@@ -196,4 +197,42 @@ body {
 .btn-custom-outline:hover {
   background-color: var(--custom-btn-bg-color);
   color: var(--white-color);
+}
+
+
+@media (max-width: 992px) {
+  footer {
+    padding-top: 0px!important;
+    margin-top: 0px!important;
+  }
+  .contact-form {
+    margin-bottom: 45px;
+  }
+  footer .right-content {
+    text-align: center;
+  }
+  footer .footer-content {
+    padding: 60px 0px!important;
+  }
+}
+
+footer {
+  position: absolute;
+  z-index: 1;
+  margin-top: 200px;
+  padding-top: 120px;
+  background-image: url("../images/lava/footer-bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+}
+
+footer .footer-content {
+  padding: 120px 0px;
+}
+footer .a {
+  color: var(--white-color) !important;
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
 }
