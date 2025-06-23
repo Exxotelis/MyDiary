@@ -1,49 +1,52 @@
 {% extends 'diary/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% load i18n %}
 
 {% block content %}
-  <h1>Οι Καταχωρήσεις μου</h1>
-  <p>Εδώ μπορείς να δεις όλες τις καταχωρήσεις σου.</p>
+  <h1>{% trans "Οι Καταχωρήσεις μου" %}</h1>
+  <p>{% trans "Εδώ μπορείς να δεις όλες τις καταχωρήσεις σου." %}</p>
 
   <form method="get" action="{% url 'my_entries' %}">
-    <input type="text" name="q" placeholder="Αναζήτηση..." value="{{ query }}">
-    <button type="submit">Αναζήτηση</button>
+    <input type="text" name="q" placeholder="{% trans 'Αναζήτηση...' %}" value="{{ query }}">
+    <button type="submit">{% trans "Αναζήτηση" %}</button>
   </form>
-
-
 
   {% if entries %}
     <ul class="list-unstyled">
       {% for entry in entries %}
         <li class="mb-4">
           <strong>{{ entry.date }}</strong> —
-          Mood: {{ entry.get_mood_display|default:"—" }} —
-          Tag: {{ entry.get_tag_display|default:"—" }}<br>
+          {% trans "Mood" %}: {{ entry.get_mood_display|default:"—" }} —
+          {% trans "Tag" %}: {{ entry.get_tag_display|default:"—" }}<br>
 
           {% if entry.image %}
-            <img src="{{ entry.image.url }}" alt="Image" style="max-width: 100px; max-height: 100px;">
+            <img src="{{ entry.image.url }}" alt="{% trans 'Εικόνα' %}" style="max-width: 100px; max-height: 100px;">
           {% endif %}
 
           {% if entry.note %}<p>{{ entry.note }}</p>{% endif %}
 
-          {% if entry.is_private %}<em>(Ιδιωτικό)</em>{% endif %}
-          {% if entry.is_favorite %}<em>(Αγαπημένο)</em>{% endif %}
-          {% if entry.is_important %}<em>(Σημαντικό)</em>{% endif %}
-          {% if entry.is_urgent %}<em>(Επείγον)</em>{% endif %}
-          {% if entry.is_reminder %}<em>(Υπενθύμιση)</em>{% endif %}
-          {% if entry.is_public %}<em>(Δημόσιο)</em>{% endif %}
+          {% if entry.is_private %}<em>({% trans "Ιδιωτικό" %})</em>{% endif %}
+          {% if entry.is_favorite %}<em>({% trans "Αγαπημένο" %})</em>{% endif %}
+          {% if entry.is_important %}<em>({% trans "Σημαντικό" %})</em>{% endif %}
+          {% if entry.is_urgent %}<em>({% trans "Επείγον" %})</em>{% endif %}
+          {% if entry.is_reminder %}<em>({% trans "Υπενθύμιση" %})</em>{% endif %}
+          {% if entry.is_public %}<em>({% trans "Δημόσιο" %})</em>{% endif %}
 
           <br>
-          <a href="{% url 'entry_view' entry.date %}" class="btn btn-sm btn-custom mt-2"> Επεξεργασία -- </a>
+          <a href="{% url 'entry_view' entry.date %}" class="btn btn-sm btn-custom mt-2">
+            {% trans "Επεξεργασία" %} --
+          </a>
 
           <!-- ✅ Διαγραφή με soft delete -->
           <form method="post" action="{% url 'delete_entry' entry.date %}" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-custom mt-2"
-              onclick="return confirm('Είσαι σίγουρος ότι θέλεις να μεταφέρεις αυτή την καταχώρηση στον Κάδο;')">
-              🗑️ Μεταφορά στον Κάδο
-            </button>
+              <button type="submit" class="btn btn-sm btn-custom mt-2"
+                onclick="return confirm('{% trans 'Είσαι σίγουρος ότι θέλεις να μεταφέρεις αυτή την καταχώρηση στον Κάδο;' %}')">
+                🗑️ {% trans "Μεταφορά στον Κάδο" %}
+              </button>
+
           </form>
-          
 
           <!-- ✅ Ημερήσιες απαντήσεις -->
           {% with entry.date|stringformat:"s" as this_date %}
@@ -51,13 +54,13 @@
               {% if d|stringformat:"s" == this_date %}
                 <button class="btn btn-sm btn-outline-secondary mt-2" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapse-{{ this_date }}">
-                  ➕ Εμφάνιση Απαντήσεων
+                  ➕ {% trans "Εμφάνιση Απαντήσεων" %}
                 </button>
 
                 <div class="collapse mt-2" id="collapse-{{ this_date }}">
                   <ul>
                     {% for ans in answers %}
-                      <li><strong>Ερώτηση {{ ans.question_number }}:</strong> {{ ans.answer }}</li>
+                      <li><strong>{% blocktrans with qnum=ans.question_number %}Ερώτηση {{ qnum }}:{% endblocktrans %}</strong> {{ ans.answer }}</li>
                     {% endfor %}
                   </ul>
                 </div>
@@ -70,21 +73,21 @@
             <span class="badge bg-success">{{ badge.badge_type }}</span>
           {% endfor %}
 
-
           <hr>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>Δεν βρέθηκαν καταχωρήσεις.</p>
+    <p>{% trans "Δεν βρέθηκαν καταχωρήσεις." %}</p>
   {% endif %}
-    <!-- ✅ Κουμπιά εξαγωγής -->
-    <div class="mt-4 mb-4">
-      <a href="{% url 'export_all_answers_pdf' %}" class="btn btn-outline-danger me-2">
-        🧾 Εξαγωγή όλων των Ημερήσιων Απαντήσεων (PDF)
-      </a>
-      <a href="{% url 'export_all_entries_pdf' %}" class="btn btn-outline-primary">
-        📓 Εξαγωγή Όλων των Καταχωρήσεων (PDF)
-      </a>
-    </div>
+
+  <!-- ✅ Κουμπιά εξαγωγής -->
+  <div class="mt-4 mb-4">
+    <a href="{% url 'export_all_answers_pdf' %}" class="btn btn-outline-danger me-2">
+      🧾 {% trans "Εξαγωγή όλων των Ημερήσιων Απαντήσεων (PDF)" %}
+    </a>
+    <a href="{% url 'export_all_entries_pdf' %}" class="btn btn-outline-primary">
+      📓 {% trans "Εξαγωγή Όλων των Καταχωρήσεων (PDF)" %}
+    </a>
+  </div>
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends 'diary/base.html' %}
 {% load static %}
+{% load i18n %}
 {% load custom_tags %}
 
-{% block title %}MyDiary - Αρχική{% endblock %}
+{% block title %}MyDiary - {% trans "Αρχική" %}{% endblock %}
 
 {% block content %}
 <div class="row my-4">
@@ -10,56 +11,54 @@
   <!-- Αριστερή Στήλη -->
   <div class="col-lg-7 col-12">
     <div class="custom-block bg-white mb-4">
-      <h2 class="mb-4">Ημερήσιες Ερωτήσεις</h2>
+      <h2 class="mb-4">{% trans "Ημερήσιες Ερωτήσεις" %}</h2>
 
       {% if prompt %}
-        <div class="alert alert-info"><strong>Σκέψου:</strong> {{ prompt }}</div>
+        <div class="alert alert-info"><strong>{% trans "Σκέψου:" %}</strong> {{ prompt }}</div>
+
         <form method="post">{% csrf_token %}
           <div class="mb-4">
             <label for="q{{ num }}"><strong>{{ question }}</strong></label>
-            <textarea id="q{{ num }}" name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ..."></textarea>
+            <textarea id="q{{ num }}" name="q{{ num }}" class="form-control" rows="3" placeholder="{% trans 'Γράψε την απάντησή σου εδώ...' %}"></textarea>
           </div>
-          <button type="submit" class="btn btn-custom">Αποθήκευση</button>
+          <button type="submit" class="btn btn-custom">{% trans "Αποθήκευση" %}</button>
         </form>
       {% else %}
-        <p class="text-muted">Δεν υπάρχει ερώτηση για σήμερα.</p>
+        <p class="text-muted">{% trans "Δεν υπάρχει ερώτηση για σήμερα." %}</p>
       {% endif %}
     </div>
 
-
-
     {% if user.is_authenticated %}
       <div class="custom-block bg-white mb-4">
-        <h3 class="mb-4">Ημερήσιο Ερωτηματολόγιο</h3>
+        <h3 class="mb-4">{% trans "Ημερήσιο Ερωτηματολόγιο" %}</h3>
         <form method="post">
           {% csrf_token %}
 
-          <h5 class="mb-3">Μέρος Α</h5>
+          <h5 class="mb-3">{% trans "Μέρος Α" %}</h5>
           {% for num, question in questions.items %}
             <div class="mb-3">
               <label><strong>{{ question }}</strong></label>
-              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ...">{{ answers|get_item:num|default_if_none:"" }}</textarea>
+              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="{% trans 'Γράψε την απάντησή σου εδώ...' %}">{{ answers|get_item:num|default_if_none:"" }}</textarea>
             </div>
           {% endfor %}
 
           <hr class="my-4">
 
-          <h5 class="mb-3">Μέρος Β</h5>
+          <h5 class="mb-3">{% trans "Μέρος Β" %}</h5>
           {% for num, question in extra_questions.items %}
             <div class="mb-3">
               <label><strong>{{ question }}</strong></label>
-              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="Γράψε την απάντησή σου εδώ...">{{ answers|get_item:num|default_if_none:"" }}</textarea>
+              <textarea name="q{{ num }}" class="form-control" rows="3" placeholder="{% trans 'Γράψε την απάντησή σου εδώ...' %}">{{ answers|get_item:num|default_if_none:"" }}</textarea>
             </div>
           {% endfor %}
 
-          <button type="submit" class="btn btn-custom">Αποθήκευση Απαντήσεων</button>
+          <button type="submit" class="btn btn-custom">{% trans "Αποθήκευση Απαντήσεων" %}</button>
         </form>
       </div>
     {% endif %}
 
-
     <div class="custom-block bg-white">
-      <h5 class="mb-4">Πρόσφατη Δραστηριότητα</h5>
+      <h5 class="mb-4">{% trans "Πρόσφατη Δραστηριότητα" %}</h5>
       <div id="pie-chart"></div>
     </div>
   </div>
@@ -68,40 +67,39 @@
   <div class="col-lg-5 col-12">
     <div class="custom-block custom-block-profile text-center bg-white mb-4">
       <div class="custom-block-profile-image-wrap mb-4">
-                      {% if request.user.userprofile.profile_image %}
-                        <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="Προφίλ">
-                      {% else %}
-                        <img src="{% static 'images/profile-img.png' %}" class="profile-image img-fluid me-3" alt="Default">
-                      {% endif %}
+        {% if request.user.userprofile.profile_image %}
+          <img src="{{ request.user.userprofile.profile_image }}" class="profile-image img-fluid me-3" alt="{% trans 'Προφίλ' %}">
+        {% else %}
+          <img src="{% static 'images/profile-img.png' %}" class="profile-image img-fluid me-3" alt="{% trans 'Default' %}">
+        {% endif %}
         <a href="#" class="bi-pencil-square custom-block-edit-icon"></a>
       </div>
-      <p class="d-flex flex-wrap mb-2"><strong>Όνομα:</strong> <span>{{ request.user.username }}</span></p>
-      <p class="d-flex flex-wrap mb-2"><strong>Email:</strong> <a href="#">{{ request.user.email }}</a></p>
-      <p class="d-flex flex-wrap mb-0"><strong>Μέλος από:</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
+      <p class="d-flex flex-wrap mb-2"><strong>{% trans "Όνομα:" %}</strong> <span>{{ request.user.username }}</span></p>
+      <p class="d-flex flex-wrap mb-2"><strong>{% trans "Email:" %}</strong> <a href="#">{{ request.user.email }}</a></p>
+      <p class="d-flex flex-wrap mb-0"><strong>{% trans "Μέλος από:" %}</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
     </div>
 
     {% if streak > 1 %}
-      <div class="custom-block alert alert-success">🔥 Έχεις καταγράψει {{ streak }} συνεχόμενες ημέρες! Συνέχισε έτσι!</div>
+      <div class="custom-block alert alert-success">🔥 {% blocktrans %}Έχεις καταγράψει {{ streak }} συνεχόμενες ημέρες! Συνέχισε έτσι!{% endblocktrans %}</div>
     {% elif streak == 1 %}
-      <div class="custom-block alert alert-info">✍️ Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!</div>
+      <div class="custom-block alert alert-info">✍️ {% trans "Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!" %}</div>
     {% endif %}
 
     <div class="custom-block custom-block-bottom d-flex flex-wrap mt-4">
-      <div class="custom-block-bottom-item"><a href="{% url 'calendar' %}" class="d-flex flex-column"><i class="custom-block-icon bi-calendar"></i><small>Ημερολόγιο</small></a></div>
-      <div class="custom-block-bottom-item"><a href="{% url 'my_entries' %}" class="d-flex flex-column"><i class="custom-block-icon bi-journal-text"></i><small>Καταχωρήσεις</small></a></div>
-      <div class="custom-block-bottom-item"><a href="{% url 'export_today_answers_pdf' %}" class="d-flex flex-column"><i class="custom-block-icon bi-download"></i><small>Εξαγωγή</small></a></div>
-      <div class="custom-block-bottom-item"><a href="{% url 'trash' %}" class="d-flex flex-column"><i class="custom-block-icon bi-trash"></i><small>Κάδος</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'calendar' %}" class="d-flex flex-column"><i class="custom-block-icon bi-calendar"></i><small>{% trans "Ημερολόγιο" %}</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'my_entries' %}" class="d-flex flex-column"><i class="custom-block-icon bi-journal-text"></i><small>{% trans "Καταχωρήσεις" %}</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'export_today_answers_pdf' %}" class="d-flex flex-column"><i class="custom-block-icon bi-download"></i><small>{% trans "Εξαγωγή" %}</small></a></div>
+      <div class="custom-block-bottom-item"><a href="{% url 'trash' %}" class="d-flex flex-column"><i class="custom-block-icon bi-trash"></i><small>{% trans "Κάδος" %}</small></a></div>
     </div>
 
     <div class="custom-block bg-white mt-4">
-      <h5 class="mb-4">Δραστηριότητα ανά Ετικέτα</h5>
+      <h5 class="mb-4">{% trans "Δραστηριότητα ανά Ετικέτα" %}</h5>
       <div id="chart"></div>
-      <p class="text-muted">Οι πιο συχνές ετικέτες που χρησιμοποιείς.</p>
-      <p class="text-muted">Κάνε κλικ σε μια ετικέτα για να δεις όλες τις καταχωρήσεις που την περιέχουν.</p>
-      <p class="text-muted">Αν δεν βλέπεις ετικέτες, ίσως να μην έχεις προσθέσει ακόμα.</p>
-      <p class="text-muted">Μπορείς να προσθέσεις ετικέτες στις καταχωρήσεις σου για καλύτερη οργάνωση.</p>
-
-      
+      <p class="text-muted">{% trans "Οι πιο συχνές ετικέτες που χρησιμοποιείς." %}</p>
+      <p class="text-muted">{% trans "Κάνε κλικ σε μια ετικέτα για να δεις όλες τις καταχωρήσεις που την περιέχουν." %}</p>
+      <p class="text-muted">{% trans "Αν δεν βλέπεις ετικέτες, ίσως να μην έχεις προσθέσει ακόμα." %}</p>
+      <p class="text-muted">{% trans "Μπορείς να προσθέσεις ετικέτες στις καταχωρήσεις σου για καλύτερη οργάνωση." %}</p>
+    </div>
   </div>
 </div>
 {% endblock %}
@@ -128,18 +126,18 @@
       new ApexCharts(document.querySelector("#pie-chart"), {
         chart: { type: 'pie', width: 360 },
         series: moodData.map(d => d.total),
-        labels: moodData.map(d => d.mood || 'Άγνωστο'),
+        labels: moodData.map(d => d.mood || '{% trans "Άγνωστο" %}'),
       }).render();
 
       // Bar Chart (Tag Distribution)
       new ApexCharts(document.querySelector("#chart"), {
         chart: { type: 'bar', height: 350 },
         series: [{
-          name: 'Καταγραφές',
+          name: '{% trans "Καταγραφές" %}',
           data: tagData.map(d => d.total)
         }],
         xaxis: {
-          categories: tagData.map(d => d.tag || 'Άγνωστο')
+          categories: tagData.map(d => d.tag || '{% trans "Άγνωστο" %}')
         }
       }).render();
 
@@ -147,7 +145,7 @@
       new ApexCharts(document.querySelector("#line-chart"), {
         chart: { type: 'line', height: 300 },
         series: [{
-          name: 'Απαντήσεις',
+          name: '{% trans "Απαντήσεις" %}',
           data: answerData
         }],
         xaxis: {
@@ -160,6 +158,3 @@
   });
 </script>
 {% endblock %}
-
-
-

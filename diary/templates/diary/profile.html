@@ -1,43 +1,44 @@
 {% extends 'diary/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block content %}
 <div class="container mt-4">
-  <h2 class="mb-3">Το Προφίλ Μου</h2>
+  <h2 class="mb-3">{% trans "Το Προφίλ Μου" %}</h2>
 
   <!-- Εικόνα προφίλ -->
   <div class="text-center mb-4">
     <form method="post" action="{% url 'upload_profile_image' %}" enctype="multipart/form-data" class="text-center mb-5">
       {% csrf_token %}
       <input type="file" name="profile_image" accept="image/*" required class="form-control mb-2" style="max-width: 300px; margin: 0 auto;">
-      <button type="submit" class="btn btn-custom">Αλλαγή Εικόνας Προφίλ</button>
+      <button type="submit" class="btn btn-custom">{% trans "Αλλαγή Εικόνας Προφίλ" %}</button>
     </form>
-    
   </div>
 
   <!-- Στοιχεία Χρήστη -->
   <div class="card mb-4">
     <div class="card-body">
       <h5 class="card-title">@{{ user.username }}</h5>
-      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
-      <p class="card-text"><strong>Καταχωρήσεις:</strong> {{ total_entries }}</p>
-      <p class="card-text"><strong>Ημερήσιες Απαντήσεις:</strong> {{ total_answers }}</p>
-      <p class="card-text"><strong>Σειρά Ημερών:</strong> {{ streak }} ημέρες</p>
+      <p class="card-text"><strong>{% trans "Email:" %}</strong> {{ user.email }}</p>
+      <p class="card-text"><strong>{% trans "Καταχωρήσεις:" %}</strong> {{ total_entries }}</p>
+      <p class="card-text"><strong>{% trans "Ημερήσιες Απαντήσεις:" %}</strong> {{ total_answers }}</p>
+      <p class="card-text">{% blocktrans with days=streak %}Σειρά Ημερών: {{ days }} ημέρες{% endblocktrans %}</p>
+
     </div>
   </div>
 
   <!-- Badges -->
-  <h4 class="mb-2">Τα Badge μου</h4>
+  <h4 class="mb-2">{% trans "Τα Badge μου" %}</h4>
   <div class="mb-4">
     {% for badge in badges %}
       <span class="badge bg-success me-2">{{ badge.badge.name }}</span>
     {% empty %}
-      <p>Δεν έχεις αποκτήσει ακόμα κάποιο badge.</p>
+      <p>{% trans "Δεν έχεις αποκτήσει ακόμα κάποιο badge." %}</p>
     {% endfor %}
   </div>
 
   <!-- Δημόσιες Καταχωρήσεις -->
-  <h4 class="mb-2">Δημόσιες Καταχωρήσεις</h4>
+  <h4 class="mb-2">{% trans "Δημόσιες Καταχωρήσεις" %}</h4>
   {% if public_entries %}
     <div class="list-group">
       {% for entry in public_entries %}
@@ -47,7 +48,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>Δεν έχεις δημοσιεύσει ακόμα κάποια καταχώρηση.</p>
+    <p>{% trans "Δεν έχεις δημοσιεύσει ακόμα κάποια καταχώρηση." %}</p>
   {% endif %}
 </div>
 {% endblock %}

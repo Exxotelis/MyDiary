@@ -1,27 +1,32 @@
 {% load static %}
+{% load custom_tags %}
+{% load i18n %}
+
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO Title -->
-  <title>{% block title %}Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση{% endblock %}</title>
-  <meta name="description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
-  <link rel="canonical" href="https://reflectivo.site/">
+<title>{% block title %}{% trans "Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση" %}{% endblock %}</title>
+<meta name="description" content="{% trans 'Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.'|escape }}">
+<link rel="canonical" href="https://reflectivo.site/">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
-  <meta property="og:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://reflectivo.site/">
-  <meta property="og:image" content="https://reflectivo.site/static/images/og-banner.jpg">
+<!-- Open Graph -->
+<meta property="og:title" content="{% trans 'Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση'|escape }}">
+<meta property="og:description" content="{% trans 'Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.'|escape }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reflectivo.site/">
+<meta property="og:image" content="https://reflectivo.site/static/images/og-banner.jpg">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση">
-  <meta name="twitter:description" content="Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.">
-  <meta name="twitter:image" content="https://reflectivo.site/static/images/og-banner.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% trans 'Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση'|escape }}">
+<meta name="twitter:description" content="{% trans 'Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν.'|escape }}">
+<meta name="twitter:image" content="https://reflectivo.site/static/images/og-banner.png">
+
+
 
   <!-- Favicon -->
   <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -46,7 +51,7 @@
           </a>
 
           <ul class="social-icon d-flex justify-content-center align-items-center mx-auto">
-            <span class="text-white me-4 d-none d-lg-block">Ακολουθήστε μας</span>
+            <span class="text-white me-4 d-none d-lg-block">{% trans "Ακολουθήστε μας" %}</span>
             <li class="social-icon-item">
               <a href="https://www.instagram.com/reflectivo" class="social-icon-link bi-instagram" title="Instagram"></a>
             </li>
@@ -73,16 +78,16 @@
       <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
-      <p class="offcanvas-subtitle">Ημερολόγιο & Καταχωρήσεις</p>
-      <p class="offcanvas-subtitle">Δημιουργήστε το δικό σας ημερολόγιο</p>
+      <p class="offcanvas-subtitle">{% trans "Ημερολόγιο & Καταχωρήσεις" %}</p>
+      <p class="offcanvas-subtitle">{% trans "Δημιουργήστε το δικό σας ημερολόγιο" %}</p>
       <nav>
         <ul>
-          <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Εγγραφή</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Επικοινωνία</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> {% trans "Ημερολόγιο" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> {% trans "Καταχωρήσεις" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i>{% trans " Γκαλερί" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> {% trans "Κάδος" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">{% trans "..." %}Εγγραφή</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">{% trans "Επικοινωνία" %}</a></li>
         </ul>
       </nav>
     </div>

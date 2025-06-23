@@ -1,8 +1,12 @@
 {% extends 'diary/base.html' %}
 {% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+
 
 {% block content %}
-  <h1>📸 Συλλογή Εικόνων</h1>
+  <h1>📸 {% trans "Συλλογή Εικόνων" %}</h1>
 
   <div class="row">
     {% for entry in images %}
@@ -19,7 +23,7 @@
             <p class="card-text">Ημερομηνία: {{ entry.date }}</p>
             <form method="post" action="{% url 'delete_image_entry' entry.date %}">
               {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-danger">🗑️ Διαγραφή</button>
+              <button type="submit" class="btn btn-sm btn-danger">🗑️ {% trans "Διαγραφή" %}</button>
             </form>
           </div>
         </div>
@@ -36,7 +40,7 @@
         </div>
       </div>
     {% empty %}
-      <p>Δεν υπάρχουν αποθηκευμένες εικόνες ακόμα.</p>
+      <p>{% trans "Δεν υπάρχουν αποθηκευμένες εικόνες ακόμα." %}</p>
     {% endfor %}
   </div>
 {% endblock %}

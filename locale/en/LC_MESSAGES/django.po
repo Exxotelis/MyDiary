@@ -1,0 +1,1049 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Reflectivo 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-12 20:37+0100\n"
+"PO-Revision-Date: 2025-06-03 17:30+0100\n"
+"Last-Translator: Lefteris Kapsalidis <info@reflectivo.site>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\diary\prompts.py:4
+msgid "Τι σε έκανε να χαμογελάσεις σήμερα;"
+msgstr "What made you smile today?"
+
+#: .\diary\prompts.py:5
+msgid "Ποια ήταν η πιο ξεχωριστή στιγμή της ημέρας;"
+msgstr "What was the most special moment of the day?"
+
+#: .\diary\prompts.py:6
+msgid "Πώς ένιωσες όταν ξύπνησες το πρωί;"
+msgstr "How did you feel when you woke up this morning?"
+
+#: .\diary\prompts.py:7
+msgid "Ποιο ήταν το πιο ευχάριστο πράγμα που άκουσες σήμερα;"
+msgstr "What was the nicest thing you heard today?"
+
+#: .\diary\prompts.py:8
+msgid "Τι έμαθες σήμερα για τον εαυτό σου;"
+msgstr "What did you learn about yourself today?"
+
+#: .\diary\prompts.py:9
+msgid "Με ποιον ήρθες σε επαφή σήμερα που σε έκανε να νιώσεις όμορφα;"
+msgstr "Who did you connect with today that made you feel good?"
+
+#: .\diary\prompts.py:10
+msgid "Ποια δυσκολία κατάφερες να ξεπεράσεις;"
+msgstr "What difficulty did you manage to overcome?"
+
+#: .\diary\prompts.py:11
+msgid "Ποια ήταν η πιο ήρεμη στιγμή της ημέρας σου;"
+msgstr "What was the calmest moment of your day?"
+
+#: .\diary\prompts.py:12
+msgid "Αν είχες να διαλέξεις έναν τίτλο για τη μέρα σου, ποιος θα ήταν;"
+msgstr "If you had to give your day a title, what would it be?"
+
+#: .\diary\prompts.py:13
+msgid "Τι θα ήθελες να θυμάσαι από αυτή τη μέρα;"
+msgstr "What would you like to remember from this day?"
+
+#: .\diary\prompts.py:14
+msgid "Ποιο ήταν το πρώτο πράγμα που έκανες σήμερα το πρωί;"
+msgstr "What was the first thing you did this morning?"
+
+#: .\diary\prompts.py:15
+msgid "Ποια μικρή απόφαση σήμερα σε έκανε να νιώσεις καλά;"
+msgstr "What small decision made you feel good today?"
+
+#: .\diary\prompts.py:16
+msgid "Υπήρξε κάτι σήμερα που σε εξέπληξε;"
+msgstr "Was there anything that surprised you today?"
+
+#: .\diary\prompts.py:17
+msgid "Ποια ήταν η πιο δυνατή σκέψη που είχες σήμερα;"
+msgstr "What was the strongest thought you had today?"
+
+#: .\diary\prompts.py:18
+msgid "Σε ποιο σημείο της ημέρας αισθάνθηκες περήφανος για εσένα;"
+msgstr "At what point today did you feel proud of yourself?"
+
+#: .\diary\prompts.py:19
+msgid "Ποιο ήταν το πιο απλό αλλά ουσιαστικό πράγμα που έκανες σήμερα;"
+msgstr "What was the simplest but most meaningful thing you did today?"
+
+#: .\diary\prompts.py:20
+msgid "Ποιο άτομο σε ενέπνευσε σήμερα και γιατί;"
+msgstr "Who inspired you today and why?"
+
+#: .\diary\prompts.py:21
+msgid "Αν έδινες μια συμβουλή στον εαυτό σου για αύριο, ποια θα ήταν;"
+msgstr "If you could give yourself advice for tomorrow, what would it be?"
+
+#: .\diary\prompts.py:22
+msgid "Ποιο συναίσθημα κυριάρχησε στη μέρα σου;"
+msgstr "What emotion dominated your day?"
+
+#: .\diary\prompts.py:23
+msgid "Αν μπορούσες να επαναλάβεις ένα κομμάτι της σημερινής ημέρας, ποιο θα ήταν;"
+msgstr "If you could relive a part of today, what would it be?"
+
+#: .\diary\prompts.py:24
+msgid "Τι απόλαυσες περισσότερο σήμερα;"
+msgstr "What did you enjoy the most today?"
+
+#: .\diary\prompts.py:25
+msgid "Ποιο είναι το ένα πράγμα που θα ήθελες να αλλάξεις στη σημερινή σου μέρα;"
+msgstr "What is one thing you would like to change about your day today?"
+
+#: .\diary\prompts.py:26
+msgid "Ποιες στιγμές σου έδωσαν ενέργεια σήμερα;"
+msgstr "Which moments gave you energy today?"
+
+#: .\diary\prompts.py:27
+msgid "Ποιο ήταν το πιο ουσιαστικό πράγμα που έκανες για τον εαυτό σου σήμερα;"
+msgstr "What was the most meaningful thing you did for yourself today?"
+
+#: .\diary\prompts.py:28
+msgid "Πώς αντιμετώπισες μια δυσκολία σήμερα;"
+msgstr "How did you deal with a challenge today?"
+
+#: .\diary\prompts.py:29
+msgid "Ποια ήταν η τελευταία σκέψη σου πριν κοιμηθείς χθες;"
+msgstr "What was your last thought before falling asleep last night?"
+
+#: .\diary\prompts.py:30
+msgid "Σε ποια στιγμή της ημέρας ένιωσες ευγνωμοσύνη;"
+msgstr "At what moment during the day did you feel grateful?"
+
+#: .\diary\prompts.py:31
+msgid "Ποιο άρωμα, ήχος ή εικόνα σε ηρέμησε σήμερα;"
+msgstr "What scent, sound, or image calmed you today?"
+
+#: .\diary\prompts.py:32
+msgid "Ποια συνήθεια θέλεις να συνεχίσεις μετά από σήμερα;"
+msgstr "What habit do you want to continue after today?"
+
+#: .\diary\prompts.py:33
+msgid "Τι σε ενόχλησε σήμερα και γιατί;"
+msgstr "What bothered you today and why?"
+
+#: .\diary\prompts.py:34
+msgid "Υπήρξε κάτι που αγνόησες αλλά τώρα εύχεσαι να είχες προσέξει;"
+msgstr "Was there something you ignored but now wish you had paid attention to?"
+
+#: .\diary\prompts.py:35
+msgid "Ποιο είναι ένα πράγμα που έμαθες από κάποιον άλλον σήμερα;"
+msgstr "What is one thing you learned from someone else today?"
+
+#: .\diary\prompts.py:36
+msgid "Ποιο είναι το σημαντικότερο πράγμα που θες να κάνεις αύριο;"
+msgstr "What is the most important thing you want to do tomorrow?"
+
+#: .\diary\prompts.py:37
+msgid "Ποια λέξη περιγράφει καλύτερα τη σημερινή σου ημέρα;"
+msgstr "What word best describes your day today?"
+
+#: .\diary\prompts.py:38
+msgid "Ποιο ήταν το πιο απρόσμενο γεγονός της ημέρας;"
+msgstr "What was the most unexpected event of the day?"
+
+#: .\diary\prompts.py:39
+msgid "Υπήρξε κάτι που σου άλλαξε τη διάθεση;"
+msgstr "Was there something that changed your mood?"
+
+#: .\diary\prompts.py:40
+msgid "Ποιο ήταν το πιο ωραίο πράγμα που είδες σήμερα;"
+msgstr "What was the most beautiful thing you saw today?"
+
+#: .\diary\prompts.py:41
+msgid "Ποιο είναι το πρώτο πράγμα που θα κάνεις αύριο και γιατί;"
+msgstr "What is the first thing you will do tomorrow and why?"
+
+#: .\diary\prompts.py:42
+msgid "Ποιο ήταν το σημαντικότερο «όχι» που είπες σήμερα;"
+msgstr "What was the most important “no” you said today?"
+
+#: .\diary\prompts.py:43
+msgid "Ποιο μικρό βήμα έκανες σήμερα προς έναν μεγαλύτερο στόχο;"
+msgstr "What small step did you take today toward a bigger goal?"
+
+#: .\diary\prompts.py:44
+msgid "Ποιο σημείο της ημέρας θα ήθελες να κρατήσεις για πάντα;"
+msgstr "What moment of the day would you like to hold on to forever?"
+
+#: .\diary\prompts.py:45
+msgid "Τι σε βοήθησε να χαλαρώσεις σήμερα;"
+msgstr "What helped you relax today?"
+
+#: .\diary\prompts.py:46
+msgid "Ποιο άτομο σου έδωσε κουράγιο σήμερα;"
+msgstr "Who gave you courage today?"
+
+#: .\diary\prompts.py:47
+msgid "Τι σε έκανε να γελάσεις;"
+msgstr "What made you laugh?"
+
+#: .\diary\prompts.py:48
+msgid "Πώς επηρέασες θετικά τη μέρα κάποιου άλλου;"
+msgstr "How did you positively impact someone else's day?"
+
+#: .\diary\prompts.py:49
+msgid "Ποια συνήθεια θες να σταματήσεις και γιατί;"
+msgstr "What habit do you want to stop and why?"
+
+#: .\diary\prompts.py:50
+msgid "Ποιο ήταν το πιο όμορφο ηλιοβασίλεμα ή φως που είδες;"
+msgstr "What was the most beautiful sunset or light you saw?"
+
+#: .\diary\prompts.py:51
+msgid "Ποιο κομμάτι του εαυτού σου αναγνώρισες σήμερα;"
+msgstr "What part of yourself did you recognize today?"
+
+#: .\diary\prompts.py:52
+msgid "Αν έδινες ένα δώρο στον εαυτό σου για σήμερα, τι θα ήταν αυτό;"
+msgstr "If you were to give yourself a gift for today, what would it be?"
+
+#: .\diary\templates\diary\base.html:11 .\diary\templates\diary\contact.html:10
+#: .\diary\templates\diary\home.html:13 .\diary\templates\diary\login.html:12
+msgid "Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση"
+msgstr "Reflectivo – Your personal journal for daily introspection"
+
+#: .\diary\templates\diary\base.html:65
+msgid "Σκοτεινό"
+msgstr "Dark"
+
+#: .\diary\templates\diary\base.html:99
+msgid " πριν"
+msgstr "before"
+
+#: .\diary\templates\diary\base.html:104
+msgid "Δεν υπάρχουν ειδοποιήσεις."
+msgstr "No question for today."
+
+#: .\diary\templates\diary\base.html:190 .\diary\templates\diary\index.html:70
+msgid "Προφίλ"
+msgstr "Profile"
+
+#: .\diary\templates\diary\base.html:191
+msgid "Ρυθμίσεις"
+msgstr "Settings"
+
+#: .\diary\templates\diary\base.html:192
+msgid "Βοήθεια"
+msgstr "Help"
+
+#: .\diary\templates\diary\base.html:197 .\diary\templates\diary\base.html:239
+msgid "Σύνδεση"
+msgstr "Login"
+
+#: .\diary\templates\diary\base.html:221
+#: .\diary\templates\diary\contact.html:79
+#: .\diary\templates\diary\login.html:81
+#: .\diary\templates\diary\register.html:70
+msgid "Ημερήσιες Ερωτήσεις"
+msgstr "Daily Questions"
+
+#: .\diary\templates\diary\base.html:222
+#: .\diary\templates\diary\contact.html:80
+#: .\diary\templates\diary\login.html:82
+#: .\diary\templates\diary\register.html:71
+msgid "Ημερήσιο Ερωτηματολόγιο"
+msgstr "Daily Questionnaire"
+
+#: .\diary\templates\diary\base.html:226
+#: .\diary\templates\diary\contact.html:83
+#: .\diary\templates\diary\index.html:88 .\diary\templates\diary\login.html:85
+msgid "Ημερολόγιο"
+msgstr "Calendar"
+
+#: .\diary\templates\diary\base.html:227
+#: .\diary\templates\diary\contact.html:84
+#: .\diary\templates\diary\index.html:89 .\diary\templates\diary\login.html:86
+msgid "Καταχωρήσεις"
+msgstr "Entries"
+
+#: .\diary\templates\diary\base.html:228
+msgid "Γκαλερί"
+msgstr "Gallery"
+
+#: .\diary\templates\diary\base.html:229
+#: .\diary\templates\diary\contact.html:86
+#: .\diary\templates\diary\index.html:91 .\diary\templates\diary\login.html:88
+msgid "Κάδος"
+msgstr "Trash"
+
+#: .\diary\templates\diary\base.html:230 .\diary\templates\diary\base.html:267
+#: .\diary\templates\diary\home.html:67
+#: .\diary\templates\diary\register.html:78
+#: .\diary\templates\diary\register.html:96
+#: .\diary\templates\diary\register.html:138
+msgid "Εγγραφή"
+msgstr "Register"
+
+#: .\diary\templates\diary\base.html:231 .\diary\templates\diary\base.html:269
+#: .\diary\templates\diary\contact.html:88
+#: .\diary\templates\diary\login.html:90
+#: .\diary\templates\diary\register.html:79
+msgid "Επικοινωνία"
+msgstr "Contact"
+
+#: .\diary\templates\diary\base.html:266 .\diary\templates\diary\home.html:64
+#: .\diary\templates\diary\index.html:6
+msgid "Αρχική"
+msgstr "Home"
+
+#: .\diary\templates\diary\base.html:268 .\diary\templates\diary\home.html:68
+#: .\diary\templates\diary\register.html:141
+msgid "Σύνδεση"
+msgstr "Login"
+
+#: .\diary\templates\diary\base.html:272
+msgid "2025 Reflectivo – Όλα τα δικαιώματα διατηρούνται."
+msgstr "2025 Reflectivo – All rights reserved."
+
+#: .\diary\templates\diary\contact.html:52
+#: .\diary\templates\diary\login.html:54
+#: .\diary\templates\diary\register.html:46
+msgid "Ακολουθήστε μας"
+msgstr "Follow Us"
+
+#: .\diary\templates\diary\contact.html:85
+#: .\diary\templates\diary\login.html:87
+#: .\diary\templates\diary\register.html:76
+msgid " Γκαλερί"
+msgstr "Gallery"
+
+#: .\diary\templates\diary\contact.html:87
+#: .\diary\templates\diary\login.html:89
+msgid "..."
+msgstr "..."
+
+#: .\diary\templates\diary\home.html:65
+msgid "Σχετικά"
+msgstr "About"
+
+#: .\diary\templates\diary\home.html:66
+msgid "Μαρτυρίες"
+msgstr "Testimonials"
+
+#: .\diary\templates\diary\home.html:70
+msgid "Μενού"
+msgstr "Menu"
+
+#: .\diary\templates\diary\home.html:177
+msgid "Τι Λένε <em>Οι Χρήστες</em>"
+msgstr "What <em>Users</em> Say"
+
+#: .\diary\templates\diary\home.html:178
+msgid "Αληθινές εμπειρίες ανθρώπων που χρησιμοποιούν το Reflectivo καθημερινά για να καταγράψουν, να επεξεργαστούν και να αναπτυχθούν."
+msgstr "Real experiences from people who use Reflectivo daily to record, reflect, and grow."
+
+#: .\diary\templates\diary\home.html:196
+msgid "Νίκος Παπαδόπουλος"
+msgstr "Nikos Papadopoulos"
+
+#: .\diary\templates\diary\home.html:197
+msgid "Η καταγραφή των σκέψεών μου έγινε καθημερινή συνήθεια – με βοήθησε να καταλάβω τον εαυτό μου."
+msgstr "Journaling my thoughts became a daily habit – it helped me understand myself."
+
+#: .\diary\templates\diary\home.html:198
+msgid "Ψυχολόγος"
+msgstr "Psychologist"
+
+#: .\diary\templates\diary\home.html:213
+msgid "Ελένη Μαρκοπούλου"
+msgstr "Eleni Markopoulou"
+
+#: .\diary\templates\diary\home.html:214
+msgid "Το Reflectivo είναι το προσωπικό μου safe space – απλό, όμορφο και με νόημα."
+msgstr "Reflectivo is my personal safe space – simple, beautiful, and meaningful."
+
+#: .\diary\templates\diary\home.html:215
+msgid "Δασκάλα"
+msgstr "Teacher"
+
+#: .\diary\templates\diary\home.html:228
+msgid "Γιώργος Τ."
+msgstr "Giorgos T."
+
+#: .\diary\templates\diary\home.html:229
+msgid "Πολύ πιο χρήσιμο απ’ όσο περίμενα. Εύχρηστο interface, όμορφος σχεδιασμός και ωραία badges."
+msgstr "Much more useful than I expected. User-friendly interface, beautiful design, and nice badges."
+
+#: .\diary\templates\diary\home.html:230
+msgid "Σύμβουλος"
+msgstr "Consultant"
+
+#: .\diary\templates\diary\home.html:244
+msgid "Άννα Σ."
+msgstr "Anna S."
+
+#: .\diary\templates\diary\home.html:245
+msgid "Με βοηθάει να μείνω συνεπής και οργανωμένη. Το προτείνω ανεπιφύλακτα!"
+msgstr "It helps me stay consistent and organized. I highly recommend it!"
+
+#: .\diary\templates\diary\home.html:246
+msgid "Φοιτήτρια"
+msgstr "Student"
+
+#: .\diary\templates\diary\index.html:14
+msgid "Ημερήσιες Ερωτήσεις"
+msgstr "Daily Questions"
+
+#: .\diary\templates\diary\index.html:17
+msgid "Σκέψου:"
+msgstr "Reflect:"
+
+#: .\diary\templates\diary\index.html:21
+msgid "Γράψε την απάντησή σου εδώ..."
+msgstr "Write your answer here..."
+
+#: .\diary\templates\diary\index.html:23
+msgid "Αποθήκευση"
+msgstr "Save"
+
+#: .\diary\templates\diary\index.html:26
+msgid "Δεν υπάρχει ερώτηση για σήμερα."
+msgstr "No question for today."
+
+#: .\diary\templates\diary\index.html:32
+msgid "Ημερήσιο Ερωτηματολόγιο"
+msgstr "Daily Questionnaire"
+
+#: .\diary\templates\diary\index.html:36
+msgid "Μέρος Α"
+msgstr "Part A"
+
+#: .\diary\templates\diary\index.html:46
+msgid "Μέρος Β"
+msgstr "Part B"
+
+#: .\diary\templates\diary\index.html:54
+msgid "Αποθήκευση Απαντήσεων"
+msgstr "Save Answers"
+
+#: .\diary\templates\diary\index.html:60
+msgid "Πρόσφατη Δραστηριότητα"
+msgstr "Recent Activity"
+
+#: .\diary\templates\diary\index.html:72
+msgid "Default"
+msgstr "Default"
+
+#: .\diary\templates\diary\index.html:76
+msgid "Όνομα:"
+msgstr "Name:"
+
+#: .\diary\templates\diary\index.html:77
+msgid "Email:"
+msgstr "Email:"
+
+#: .\diary\templates\diary\index.html:78
+msgid "Μέλος από:"
+msgstr "Member since:"
+
+#: .\diary\templates\diary\index.html:82
+msgid "Έχεις καταγράψει %(streak)s συνεχόμενες ημέρες! Συνέχισε έτσι!"
+msgstr "You have logged %(streak)s consecutive days! Keep it up!"
+
+#: .\diary\templates\diary\index.html:84
+msgid "Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!"
+msgstr "You started writing today! Great start!"
+
+#: .\diary\templates\diary\index.html:90
+msgid "Εξαγωγή"
+msgstr "Export"
+
+#: .\diary\templates\diary\index.html:95
+msgid "Δραστηριότητα ανά Ετικέτα"
+msgstr "Activity by Tag"
+
+#: .\diary\templates\diary\index.html:97
+msgid "Οι πιο συχνές ετικέτες που χρησιμοποιείς."
+msgstr "Your most used tags."
+
+#: .\diary\templates\diary\index.html:98
+msgid "Κάνε κλικ σε μια ετικέτα για να δεις όλες τις καταχωρήσεις που την περιέχουν."
+msgstr "Click on a tag to view all entries containing it."
+
+#: .\diary\templates\diary\index.html:99
+msgid "Αν δεν βλέπεις ετικέτες, ίσως να μην έχεις προσθέσει ακόμα."
+msgstr "If you don't see any tags, you might not have added any yet."
+
+#: .\diary\templates\diary\index.html:100
+msgid "Μπορείς να προσθέσεις ετικέτες στις καταχωρήσεις σου για καλύτερη οργάνωση."
+msgstr "You can add tags to your entries for better organization."
+
+#: .\diary\templates\diary\index.html:128
+msgid "Άγνωστο"
+msgstr "Unknown"
+
+#: .\diary\templates\diary\index.html:135
+msgid "Καταγραφές"
+msgstr "Entries"
+
+#: .\diary\templates\diary\index.html:147
+msgid "Απαντήσεις"
+msgstr "Answers"
+
+#: .\diary\templates\diary\register.html:34
+msgid "Ο περιηγητής σας δεν υποστηρίζει την προβολή βίντεο."
+msgstr "Your browser does not support video playback."
+
+#: .\diary\templates\diary\register.html:56
+msgid "Ενημερώστε με "
+msgstr "Notify me"
+
+#: .\diary\templates\diary\register.html:74
+msgid "Ημερολόγιο"
+msgstr "Calendar"
+
+#: .\diary\templates\diary\register.html:75
+msgid "Καταχωρήσεις"
+msgstr "Entries"
+
+#: .\diary\templates\diary\register.html:77
+msgid "Κάδος"
+msgstr "Trash"
+
+#: .\diary\templates\diary\register.html:94
+msgid "Μείνετε ενημερωμένοι"
+msgstr "Stay informed"
+
+#: .\diary\templates\diary\register.html:100
+msgid "Με την εγγραφή σας, αποδέχεστε την Πολιτική Απορρήτου"
+msgstr "By signing up, you agree to the Privacy Policy"
+
+#: .\diary\templates\diary\register.html:111
+msgid "Δημιουργία Λογαριασμού"
+msgstr "Create Account"
+
+#: .\diary\templates\diary\register.html:114
+msgid "Όνομα"
+msgstr "Name:"
+
+#: .\diary\templates\diary\register.html:117
+msgid "Επώνυμο"
+msgstr "Last Name"
+
+#: .\diary\templates\diary\register.html:125
+msgid "Όνομα χρήστη"
+msgstr "User Name"
+
+#: .\diary\templates\diary\register.html:130
+msgid "Κωδικός"
+msgstr "Password"
+
+#: .\diary\templates\diary\register.html:133
+msgid "Επιβεβαίωση Κωδικού"
+msgstr "Confirm Password"
+
+#: .\diary\templates\diary\register.html:141
+msgid "Έχεις ήδη λογαριασμό; "
+msgstr "Already Register?"
+
+#: .\diary\templates\diary\register.html:146
+msgid "Υπάρχουν λάθη στη φόρμα. Ελέγξτε τα πεδία και προσπαθήστε ξανά."
+msgstr "There are errors in the form. Please check the fields and try again."
+
+#: .\diary\views.py:58
+msgid "Πώς νιώθω σήμερα;"
+msgstr "How do I feel today?"
+
+#: .\diary\views.py:59
+msgid "Ποια ήταν η πιο δύσκολη στιγμή της ημέρας;"
+msgstr "What was the hardest moment of the day?"
+
+#: .\diary\views.py:60
+msgid "Ποιο ήταν το μεγαλύτερό μου επίτευγμα σήμερα;"
+msgstr "What was my greatest achievement today?"
+
+#: .\diary\views.py:64
+msgid "Τι έμαθα σήμερα;"
+msgstr "What did I learn today?"
+
+#: .\diary\views.py:65
+msgid "Ποια ήταν τα τρία πιο όμορφα πράγματα που συνέβησαν;"
+msgstr "What were the three most beautiful things that happened?"
+
+#: .\diary\views.py:66
+msgid "Τι θα μπορούσα να είχα κάνει καλύτερα σήμερα;"
+msgstr "What could I have done better today?"
+
+#: .\env\Lib\site-packages\cloudinary\forms.py:55
+#: .\env\Lib\site-packages\cloudinary\forms.py:124
+msgid "NΔεν έχει επιλεχθεί αρχείο!"
+msgstr "No file selected!"
+
+
+msgid "Το Προφίλ Μου"
+msgstr "My Profile"
+
+msgid "Αλλαγή Εικόνας Προφίλ"
+msgstr "Change Profile Picture"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Καταχωρήσεις:"
+msgstr "Entries:"
+
+msgid "Ημερήσιες Απαντήσεις:"
+msgstr "Daily Answers:"
+
+msgid "Σειρά Ημερών: %(days)s ημέρες"
+msgstr "Streak: %(days)s days"
+
+msgid "Τα Badge μου"
+msgstr "My Badges"
+
+msgid "Δεν έχεις αποκτήσει ακόμα κάποιο badge."
+msgstr "You haven't earned any badges yet."
+
+msgid "Δημόσιες Καταχωρήσεις"
+msgstr "Public Entries"
+
+msgid "Δεν έχεις δημοσιεύσει ακόμα κάποια καταχώρηση."
+msgstr "You haven't published any entries yet."
+
+msgid "Οι Καταχωρήσεις μου"
+msgstr "My Entries"
+
+msgid "Εδώ μπορείς να δεις όλες τις καταχωρήσεις σου."
+msgstr "Here you can see all your entries."
+
+msgid "Αναζήτηση..."
+msgstr "Search..."
+
+msgid "Αναζήτηση"
+msgstr "Search"
+
+msgid "Mood"
+msgstr "Mood"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Εικόνα"
+msgstr "Image"
+
+msgid "Ιδιωτικό"
+msgstr "Private"
+
+msgid "Αγαπημένο"
+msgstr "Favorite"
+
+msgid "Σημαντικό"
+msgstr "Important"
+
+msgid "Επείγον"
+msgstr "Urgent"
+
+msgid "Υπενθύμιση"
+msgstr "Reminder"
+
+msgid "Δημόσιο"
+msgstr "Public"
+
+msgid "Επεξεργασία"
+msgstr "Edit"
+
+msgid "Είσαι σίγουρος ότι θέλεις να μεταφέρεις αυτή την καταχώρηση στον Κάδο;"
+msgstr "Are you sure you want to move this entry to Trash?"
+
+msgid "Μεταφορά στον Κάδο"
+msgstr "Move to Trash"
+
+msgid "Εμφάνιση Απαντήσεων"
+msgstr "Show Answers"
+
+msgid "Ερώτηση {{ qnum }}:"
+msgstr "Question {{ qnum }}:"
+
+msgid "Δεν βρέθηκαν καταχωρήσεις."
+msgstr "No entries found."
+
+msgid "Εξαγωγή όλων των Ημερήσιων Απαντήσεων (PDF)"
+msgstr "Export all Daily Answers (PDF)"
+
+msgid "Εξαγωγή Όλων των Καταχωρήσεων (PDF)"
+msgstr "Export All Entries (PDF)"
+
+
+msgid "Reflectivo – Το προσωπικό σου ημερολόγιο για καθημερινή ενδοσκόπηση"
+msgstr "Reflectivo – Your personal journal for daily introspection"
+
+msgid "Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν."
+msgstr "Reflectivo is your personal space for thought, self-awareness and growth. Start your journal today – totally free."
+
+msgid "Σκοτεινό"
+msgstr "Dark"
+
+msgid "Δεν υπάρχουν ειδοποιήσεις."
+msgstr "No notifications."
+
+msgid "Αποσύνδεση"
+msgstr "Logout"
+
+msgid "Προφίλ"
+msgstr "Profile"
+
+msgid "Ρυθμίσεις"
+msgstr "Settings"
+
+msgid "Βοήθεια"
+msgstr "Help"
+
+msgid "Ημερολόγιο & Καταχωρήσεις"
+msgstr "Journal & Entries"
+
+msgid "Δημιουργήστε το δικό σας ημερολόγιο"
+msgstr "Create your own journal"
+
+msgid "Ημερολόγιο"
+msgstr "Calendar"
+
+msgid "Καταχωρήσεις"
+msgstr "Entries"
+
+msgid "Γκαλερί"
+msgstr "Gallery"
+
+msgid "Κάδος"
+msgstr "Trash"
+
+msgid "Εγγραφή"
+msgstr "Register"
+
+msgid "Επικοινωνία"
+msgstr "Contact"
+
+msgid "Αρχική"
+msgstr "Home"
+
+msgid "Σύνδεση"
+msgstr "Login"
+
+msgid "2025 Reflectivo – Όλα τα δικαιώματα διατηρούνται."
+msgstr "2025 Reflectivo – All rights reserved."
+
+msgid "Ημερήσιες Ερωτήσεις"
+msgstr "Daily Questions"
+
+msgid "Σκέψου:"
+msgstr "Reflect:"
+
+msgid "Γράψε την απάντησή σου εδώ..."
+msgstr "Write your answer here..."
+
+msgid "Αποθήκευση"
+msgstr "Save"
+
+msgid "Δεν υπάρχει ερώτηση για σήμερα."
+msgstr "No question for today."
+
+msgid "Ημερήσιο Ερωτηματολόγιο"
+msgstr "Daily Questionnaire"
+
+msgid "Μέρος Α"
+msgstr "Part A"
+
+msgid "Μέρος Β"
+msgstr "Part B"
+
+msgid "Αποθήκευση Απαντήσεων"
+msgstr "Save Answers"
+
+msgid "Πρόσφατη Δραστηριότητα"
+msgstr "Recent Activity"
+
+msgid "Προφίλ"
+msgstr "Profile"
+
+msgid "Default"
+msgstr "Default"
+
+msgid "Όνομα:"
+msgstr "Name:"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Μέλος από:"
+msgstr "Member since:"
+
+msgid "Ξεκίνησες σήμερα να γράφεις! Μπράβο για την αρχή!"
+msgstr "You started writing today! Great first step!"
+
+msgid "Εξαγωγή"
+msgstr "Export"
+
+msgid "Δραστηριότητα ανά Ετικέτα"
+msgstr "Activity by Tag"
+
+msgid "Οι πιο συχνές ετικέτες που χρησιμοποιείς."
+msgstr "Your most frequently used tags."
+
+msgid "Κάνε κλικ σε μια ετικέτα για να δεις όλες τις καταχωρήσεις που την περιέχουν."
+msgstr "Click a tag to see all related entries."
+
+msgid "Αν δεν βλέπεις ετικέτες, ίσως να μην έχεις προσθέσει ακόμα."
+msgstr "If you don't see tags, you may not have added any yet."
+
+msgid "Μπορείς να προσθέσεις ετικέτες στις καταχωρήσεις σου για καλύτερη οργάνωση."
+msgstr "You can add tags to your entries for better organization."
+
+msgid "Άγνωστο"
+msgstr "Unknown"
+
+msgid "Καταγραφές"
+msgstr "Entries"
+
+msgid "Απαντήσεις"
+msgstr "Answers"
+
+msgid "- Ημερήσιες Απαντήσεις"
+msgstr "- Daily Answers"
+
+msgid "Ημερήσιες Απαντήσεις για {{ date }}"
+msgstr "Daily Answers for {{ date }}"
+
+msgid "Ερώτηση της ημέρας:"
+msgstr "Question of the day:"
+
+msgid "Λήψη όλων σε αρχείο (.txt)"
+msgstr "Download all as .txt"
+
+msgid "Λήψη όλων σε PDF"
+msgstr "Download all as PDF"
+
+msgid "Δεν υπάρχουν απαντήσεις για αυτή την ημέρα."
+msgstr "No answers for this day."
+
+msgid "Επεξεργασία Καταχώρησης"
+msgstr "Edit Entry"
+
+msgid "Επιστροφή στο Ημερολόγιο"
+msgstr "Back to Calendar"
+
+msgid "Καταχώρηση για"
+msgstr "Entry for"
+
+msgid "Περιγραφή:"
+msgstr "Description:"
+
+msgid "Διάθεση:"
+msgstr "Mood:"
+
+msgid "— Επιλογή —"
+msgstr "— Select —"
+
+msgid "😊 Χαρούμενος"
+msgstr "😊 Happy"
+
+msgid "😢 Λυπημένος"
+msgstr "😢 Sad"
+
+msgid "😰 Αγχωμένος"
+msgstr "😰 Stressed"
+
+msgid "😌 Ήρεμος"
+msgstr "😌 Calm"
+
+msgid "😠 Θυμωμένος"
+msgstr "😠 Angry"
+
+msgid "Κατηγορία:"
+msgstr "Category:"
+
+msgid "Εργασία"
+msgstr "Work"
+
+msgid "Υγεία"
+msgstr "Health"
+
+msgid "Σχέσεις"
+msgstr "Relationships"
+
+msgid "Προσωπικά"
+msgstr "Personal"
+
+msgid "Άλλο"
+msgstr "Other"
+
+msgid "Σημαντικά Σημεία:"
+msgstr "Highlights:"
+
+msgid "Ένιωσα περήφανος"
+msgstr "I felt proud"
+
+msgid "Βοήθησα κάποιον"
+msgstr "I helped someone"
+
+msgid "Είχα δύσκολη στιγμή"
+msgstr "Had a difficult time"
+
+msgid "Εικόνα ημέρας:"
+msgstr "Image of the day:"
+
+msgid "Προεπισκόπηση εικόνας"
+msgstr "Image Preview"
+
+msgid "Αυτή η καταχώρηση είναι δημόσια"
+msgstr "This entry is public"
+
+msgid "Αποθήκευση"
+msgstr "Save"
+
+msgid "← Επιστροφή στο ημερολόγιο"
+msgstr "← Back to calendar"
+
+msgid "Επιτρέπονται μόνο εικόνες JPEG, PNG ή WEBP."
+msgstr "Only JPEG, PNG, or WEBP images are allowed."
+
+msgid "Το αρχείο πρέπει να είναι μικρότερο από"
+msgstr "The file must be smaller than"
+
+msgid "MB."
+msgstr "MB."
+
+msgid "🗑️ Διαγραφή εικόνας"
+msgstr "🗑️ Delete image"
+
+msgid "Συλλογή Εικόνων"
+msgstr "Image Gallery"
+
+msgid "Ημερομηνία:"
+msgstr "Date:"
+
+msgid "Διαγραφή"
+msgstr "Delete"
+
+msgid "Δεν υπάρχουν αποθηκευμένες εικόνες ακόμα."
+msgstr "No saved images yet."
+
+msgid "Μεγέθυνση εικόνας"
+msgstr "Enlarged image"
+
+msgid "Κάδος"
+msgstr "Trash"
+
+msgid "Οι καταχωρήσεις που έχουν διαγραφεί προσωρινά. Μπορείς να τις επαναφέρεις ή να τις διαγράψεις οριστικά."
+msgstr "Entries temporarily deleted. You can restore or permanently delete them."
+
+msgid "Επαναφορά"
+msgstr "Restore"
+
+msgid "Οριστική διαγραφή;"
+msgstr "Permanently delete?"
+
+msgid "Ο Κάδος είναι άδειος."
+msgstr "The trash is empty."
+
+msgid "Οι Καταχωρήσεις μου"
+msgstr "My Entries"
+
+msgid "Εδώ μπορείς να δεις όλες τις καταχωρήσεις σου."
+msgstr "Here you can see all your entries."
+
+msgid "Αναζήτηση..."
+msgstr "Search..."
+
+msgid "Αναζήτηση"
+msgstr "Search"
+
+msgid "Mood"
+msgstr "Mood"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Εικόνα"
+msgstr "Image"
+
+msgid "Ιδιωτικό"
+msgstr "Private"
+
+msgid "Αγαπημένο"
+msgstr "Favorite"
+
+msgid "Σημαντικό"
+msgstr "Important"
+
+msgid "Επείγον"
+msgstr "Urgent"
+
+msgid "Υπενθύμιση"
+msgstr "Reminder"
+
+msgid "Δημόσιο"
+msgstr "Public"
+
+msgid "Επεξεργασία"
+msgstr "Edit"
+
+msgid "Είσαι σίγουρος ότι θέλεις να μεταφέρεις αυτή την καταχώρηση στον Κάδο;"
+msgstr "Are you sure you want to move this entry to Trash?"
+
+msgid "Μεταφορά στον Κάδο"
+msgstr "Move to Trash"
+
+msgid "Εμφάνιση Απαντήσεων"
+msgstr "Show Answers"
+
+msgid "Ερώτηση {{ qnum }}:"
+msgstr "Question {{ qnum }}:"
+
+msgid "Δεν βρέθηκαν καταχωρήσεις."
+msgstr "No entries found."
+
+msgid "Εξαγωγή όλων των Ημερήσιων Απαντήσεων (PDF)"
+msgstr "Export all Daily Answers (PDF)"
+
+msgid "Εξαγωγή Όλων των Καταχωρήσεων (PDF)"
+msgstr "Export All Entries (PDF)"
+
+
+msgid " - Ημερήσιες Απαντήσεις"
+msgstr " - Daily Answers"
+
+msgid "Ημερήσιες Απαντήσεις για {{ date }}"
+msgstr "Daily Answers for {{ date }}"
+
+msgid "Ερώτηση της ημέρας:"
+msgstr "Question of the day:"
+
+msgid "Ερώτηση {{ qnum }}:"
+msgstr "Question {{ qnum }}:"
+
+msgid "Λήψη όλων σε αρχείο (.txt)"
+msgstr "Download all as .txt"
+
+msgid "Λήψη όλων σε PDF"
+msgstr "Download all as PDF"
+
+msgid "Δεν υπάρχουν απαντήσεις για αυτή την ημέρα."
+msgstr "There are no answers for this day."
+
+msgid "Επεξεργασία Καταχώρησης"
+msgstr "Edit Entry"
+
+msgid "Επιστροφή στο Ημερολόγιο"
+msgstr "Back to Calendar"
+
+msgid "Το Reflectivo είναι ο προσωπικός σου χώρος για σκέψη, αυτογνωσία και εξέλιξη. Ξεκίνα το δικό σου ημερολόγιο σήμερα – εντελώς δωρεάν."
+msgstr "Reflectivo is your personal space for reflection, self-awareness, and growth. Start your journal today – completely free."
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Ημερολόγιο & Καταχωρήσεις"
+msgstr "Diary & Entries"
+
+msgid "Δημιουργήστε το δικό σας ημερολόγιο"
+msgstr "Create your own journal"

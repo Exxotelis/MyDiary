@@ -35,6 +35,14 @@ from django.shortcuts import get_object_or_404
 from .utils import get_streak, check_seven_day_streak
 from .forms import SubscriberForm
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from .prompts import PROMPTS
+
+def get_daily_prompt():
+    today = date.today()
+    random.seed(today.toordinal())  
+    return random.choice(PROMPTS)
+
 
 
 
@@ -45,20 +53,23 @@ def home_view(request):
 
 
 
+
 JOURNAL_QUESTIONS = {
-    1: "Πώς νιώθω σήμερα;",
-    2: "Ποια ήταν η πιο δύσκολη στιγμή της ημέρας;",
-    3: "Ποιο ήταν το μεγαλύτερό μου επίτευγμα σήμερα;",
+    1: _("Πώς νιώθω σήμερα;"),
+    2: _("Ποια ήταν η πιο δύσκολη στιγμή της ημέρας;"),
+    3: _("Ποιο ήταν το μεγαλύτερό μου επίτευγμα σήμερα;"),
 }
 
 EXTRA_JOURNAL_QUESTIONS = {
-    4: "Τι έμαθα σήμερα;",
-    5: "Ποια ήταν τα τρία πιο όμορφα πράγματα που συνέβησαν;",
-    6: "Τι θα μπορούσα να είχα κάνει καλύτερα σήμερα;",
+    4: _("Τι έμαθα σήμερα;"),
+    5: _("Ποια ήταν τα τρία πιο όμορφα πράγματα που συνέβησαν;"),
+    6: _("Τι θα μπορούσα να είχα κάνει καλύτερα σήμερα;"),
 }
+
 
 @login_required
 def index(request):
+    
     today = timezone.now().date()
 
     # Συνδυασμός όλων των ερωτήσεων
@@ -86,24 +97,11 @@ def index(request):
                     obj.answer = content
                     obj.save()
         return redirect('index')
-        # Pie Chart: Mood Distribution
+
     entries = DiaryEntry.objects.filter(user=request.user, is_deleted=False)
-    mood_data = (
-        entries.values('mood')
-        .annotate(total=Count('id'))
-        .order_by('-total')
-    )
+    mood_data = entries.values('mood').annotate(total=Count('id')).order_by('-total')
+    tag_data = entries.values('tag').annotate(total=Count('id')).order_by('tag')
 
-    # Bar Chart: Entries per Tag
-    tag_data = (
-        entries.values('tag')
-        .annotate(total=Count('id'))
-        .order_by('tag')
-    )
-    mood_data_list = list(mood_data)
-    tag_data_list = list(tag_data)
-
-    # Πρόσφατη δραστηριότητα
     labels = []
     answer_data = []
     for i in range(6, -1, -1):
@@ -116,12 +114,12 @@ def index(request):
         'questions': JOURNAL_QUESTIONS,
         'extra_questions': EXTRA_JOURNAL_QUESTIONS,
         'answers': answers,
-        'prompt': get_daily_prompt(),
+        'prompt': get_daily_prompt(),  # <--- ΤΟ DAILY PROMPT
         'streak': streak,
         'labels': labels,
         'answer_data': answer_data,
         'today': today,
-        'mood_data': list(mood_data),    
+        'mood_data': list(mood_data),
         'tag_data': list(tag_data),
     })
 
@@ -735,3 +733,4 @@ def subscribe_view(request):
         else:
             messages.error(request, "Το email είναι ήδη εγγεγραμμένο.")
     return redirect(request.META.get('HTTP_REFERER', '/'))
+

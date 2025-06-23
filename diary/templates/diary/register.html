@@ -1,4 +1,7 @@
 {% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
@@ -28,7 +31,7 @@
     <div class="video-wrap position-absolute top-0 start-0 w-100 h-100 z-n1">
       <video autoplay loop muted playsinline class="custom-video w-100 h-100 object-fit-cover">
         <source src="{% static 'videos/video.mp4' %}" type="video/mp4">
-        Ο περιηγητής σας δεν υποστηρίζει την προβολή βίντεο.
+        {% trans "Ο περιηγητής σας δεν υποστηρίζει την προβολή βίντεο." %}
       </video>
     </div>
 
@@ -40,7 +43,7 @@
               <img src="{% static 'images/reflectivo-logo.png' %}" alt="Reflectivo Logo" style="height: 38px;">
             </a>
             <ul class="social-icon d-flex justify-content-center align-items-center mx-auto">
-              <span class="text-white me-4 d-none d-lg-block">Ακολουθήστε μας</span>
+              <span class="text-white me-4 d-none d-lg-block">{% trans "Ακολουθήστε μας" %}</span>
                 <li class="social-icon-item">
                   <a href="https://www.instagram.com/reflectivo" class="social-icon-link bi-instagram" title="Instagram"></a>
                 </li>
@@ -50,7 +53,7 @@
             </ul>
             <div>
               <a href="#" class="custom-btn custom-border-btn btn" data-bs-toggle="modal" data-bs-target="#subscribeModal">
-                Ενημερώστε με <i class="bi-arrow-right ms-2"></i>
+                {% trans "Ενημερώστε με " %}<i class="bi-arrow-right ms-2"></i>
               </a>
             </div>
             <a class="bi-list offcanvas-icon" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu"></a>
@@ -64,16 +67,16 @@
         <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
-        <p class="offcanvas-subtitle">Ημερολόγιο & Καταχωρήσεις</p>
-        <p class="offcanvas-subtitle">Δημιουργήστε το δικό σας ημερολόγιο</p>
+        <p class="offcanvas-subtitle">{% trans "Ημερολόγιο & Καταχωρήσεις" %}</p>
+        <p class="offcanvas-subtitle">{% trans "Δημιουργήστε το δικό σας ημερολόγιο" %}</p>
         <nav>
           <ul>
-            <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i> Ημερολόγιο</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i> Καταχωρήσεις</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i> Γκαλερί</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i> Κάδος</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Εγγραφή</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Επικοινωνία</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'calendar' %}"><i class="bi-calendar"></i>{% trans "Ημερολόγιο" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'my_entries' %}"><i class="bi-journal-text"></i>{% trans "Καταχωρήσεις" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}"><i class="bi bi-images"></i>{% trans "Γκαλερί" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'trash' %}"><i class="bi-trash"></i>{% trans "Κάδος" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">{% trans "Εγγραφή" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">{% trans "Επικοινωνία" %}</a></li>
           </ul>
         </nav>
       </div>
@@ -88,13 +91,13 @@
           <div class="modal-body">
             <form action="{% url 'subscribe' %}" method="post" class="custom-form mt-lg-4 mt-2" role="form">
               {% csrf_token %}
-              <h2 class="modal-title" id="subscribeModalLabel">Μείνετε ενημερωμένοι</h2>
+              <h2 class="modal-title" id="subscribeModalLabel">{% trans "Μείνετε ενημερωμένοι" %}</h2>
               <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="το@email.com" required>
-              <button type="submit" class="form-control">Εγγραφή</button>
+              <button type="submit" class="form-control">{% trans "Εγγραφή" %}</button>
             </form>
           </div>
           <div class="modal-footer justify-content-center">
-            <p>Με την εγγραφή σας, αποδέχεστε την Πολιτική Απορρήτου</p>
+            <p>{% trans "Με την εγγραφή σας, αποδέχεστε την Πολιτική Απορρήτου" %}</p>
           </div>
         </div>
       </div>
@@ -105,13 +108,13 @@
         <div class="col-lg-6 col-md-8">
           <form class="custom-form" method="post">
             {% csrf_token %}
-            <h2 class="hero-title text-center mb-4 pb-2">Δημιουργία Λογαριασμού</h2>
+            <h2 class="hero-title text-center mb-4 pb-2">{% trans "Δημιουργία Λογαριασμού" %}</h2>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <div class="form-floating">{{ form.first_name }}<label for="first_name">Όνομα</label></div>
+                <div class="form-floating">{{ form.first_name }}<label for="first_name">{% trans "Όνομα" %}</label></div>
               </div>
               <div class="col-md-6 mb-3">
-                <div class="form-floating">{{ form.last_name }}<label for="last_name">Επώνυμο</label></div>
+                <div class="form-floating">{{ form.last_name }}<label for="last_name">{% trans "Επώνυμο" %}</label></div>
               </div>
             </div>
             <div class="row">
@@ -119,28 +122,28 @@
                 <div class="form-floating">{{ form.email }}<label for="email">Email</label></div>
               </div>
               <div class="col-md-6 mb-3">
-                <div class="form-floating">{{ form.username }}<label for="username">Όνομα χρήστη</label></div>
+                <div class="form-floating">{{ form.username }}<label for="username">{% trans "Όνομα χρήστη" %}</label></div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <div class="form-floating">{{ form.password1 }}<label for="password1">Κωδικός</label></div>
+                <div class="form-floating">{{ form.password1 }}<label for="password1">{% trans "Κωδικός" %}</label></div>
               </div>
               <div class="col-md-6 mb-3">
-                <div class="form-floating">{{ form.password2 }}<label for="password2">Επιβεβαίωση Κωδικού</label></div>
+                <div class="form-floating">{{ form.password2 }}<label for="password2">{% trans "Επιβεβαίωση Κωδικού" %}</label></div>
               </div>
             </div>
             <div class="row justify-content-between align-items-center mt-4">
               <div class="col-md-5">
-                <button type="submit" class="form-control btn btn-primary">Εγγραφή</button>
+                <button type="submit" class="form-control btn btn-primary">{% trans "Εγγραφή" %}</button>
               </div>
               <div class="col-md-6 text-end">
-                <p class="mb-0">Έχεις ήδη λογαριασμό; <a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">Σύνδεση</a></p>
+                <p class="mb-0">{% trans "Έχεις ήδη λογαριασμό; " %}<a href="{% url 'login' %}" class="btn custom-btn custom-border-btn">{% trans "Σύνδεση" %}</a></p>
               </div>
             </div>
             {% if form.errors %}
               <div class="alert alert-danger mt-4">
-                Υπάρχουν λάθη στη φόρμα. Ελέγξτε τα πεδία και προσπαθήστε ξανά.
+                {% trans "Υπάρχουν λάθη στη φόρμα. Ελέγξτε τα πεδία και προσπαθήστε ξανά." %}
               </div>
             {% endif %}
           </form>

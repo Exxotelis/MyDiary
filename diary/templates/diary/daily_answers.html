@@ -1,41 +1,45 @@
 {% extends 'diary/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}MyDiary{% trans " - Ημερήσιες Απαντήσεις" %}{% endblock %}
 
 {% block content %}
-  <h2>Ημερήσιες Απαντήσεις για {{ date }}</h2>
+  <h2>{% blocktrans %}Ημερήσιες Απαντήσεις για {{ date }}{% endblocktrans %}</h2>
 
   {% if prompt %}
     <div class="alert alert-info">
-      <strong>Prompt της ημέρας:</strong> {{ prompt }}
+      <strong>{% trans "Ερώτηση της ημέρας:" %}</strong> {{ prompt }}
     </div>
   {% endif %}
 
   {% if answers %}
     <ul class="list-group">
-        {% for ans in answers %}
+      {% for ans in answers %}
         <li class="list-group-item">
-          <strong>Ερώτηση {{ ans.question_number }}:</strong><br>
+          <strong>{% blocktrans with qnum=ans.question_number %}Ερώτηση {{ qnum }}:{% endblocktrans %}</strong><br>
           {{ ans.answer }}
         </li>
       {% endfor %}
-      </ul>
-      
-      <!-- ✅ Τα κουμπιά export για όλες τις απαντήσεις -->
-      <div class="mt-3">
-        <a href="{% url 'export_answers_txt' date=date %}" class="btn btn-outline-primary">
-          ⬇️ Λήψη όλων σε αρχείο (.txt)
-        </a>
-        <a href="{% url 'export_answers_pdf' date=date %}" class="btn btn-outline-danger ms-2">
-          🧾 Λήψη όλων σε PDF
-        </a>
-      </div>
-      
     </ul>
+
+    <!-- ✅ Τα κουμπιά export για όλες τις απαντήσεις -->
+    <div class="mt-3">
+      <a href="{% url 'export_answers_txt' date=date %}" class="btn btn-outline-primary">
+        ⬇️ {% trans "Λήψη όλων σε αρχείο (.txt)" %}
+      </a>
+      <a href="{% url 'export_answers_pdf' date=date %}" class="btn btn-outline-danger ms-2">
+        🧾 {% trans "Λήψη όλων σε PDF" %}
+      </a>
+    </div>
   {% else %}
-    <p>Δεν υπάρχουν απαντήσεις για αυτή την ημέρα.</p>
+    <p>{% trans "Δεν υπάρχουν απαντήσεις για αυτή την ημέρα." %}</p>
   {% endif %}
 
   <div class="mt-4">
-    <a href="{% url 'entry_view' date %}" class="btn btn-warning">✏️ Επεξεργασία Καταχώρησης</a>
-    <a href="{% url 'calendar' %}" class="btn btn-secondary">⬅ Επιστροφή στο Ημερολόγιο</a>
+    <a href="{% url 'entry_view' date %}" class="btn btn-warning">✏️ {% trans "Επεξεργασία Καταχώρησης" %}</a>
+    <a href="{% url 'calendar' %}" class="btn btn-secondary">⬅ {% trans "Επιστροφή στο Ημερολόγιο" %}</a>
   </div>
 {% endblock %}
+

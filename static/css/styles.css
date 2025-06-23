@@ -198,7 +198,12 @@ body {
   background-color: var(--custom-btn-bg-color);
   color: var(--white-color);
 }
-
+/* Απόκρυψη της αναζήτησης κάτω από 768px */
+@media (max-width: 767.98px) {
+  .header-form {
+    display: none !important;
+  }
+}
 
 @media (max-width: 992px) {
   footer {
@@ -235,4 +240,129 @@ footer .a {
   color: var(--white-color) !important;
   font-weight: var(--font-weight-bold);
   text-decoration: none;
+}
+
+  form select {
+    padding: 5px 10px;
+    margin: 10px;
+    font-size: 16px;
+  }
+
+  /* Γενικά styles για dropdown με σημαίες */
+.language-select {
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  padding-left: 32px;
+  background-size: 20px 14px;
+}
+
+/*---------------------------------------
+  LANGUAGE SELECT STYLES
+-----------------------------------------*/
+
+/* 🔘 Στρογγυλή σημαία με cover fit */
+.lang-flag-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: transparent; /* Διαφανές φόντο */
+  box-shadow: none; /* χωρίς περίγραμμα/σκιά */
+}
+
+/* 💻 Στο dropdown του desktop (select) */
+.language-select {
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 20px 14px;
+  padding-left: 32px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* 🇬🇷 Ελλάδα */
+.language-select.el {
+  background-image: url('/static/images/flag/gr.png');
+}
+
+/* 🇬🇧 Αγγλία */
+.language-select.en {
+  background-image: url('/static/images/flag/gb.png');
+}
+
+/* 📱 Σε κινητά: Μόνο σημαία, χωρίς κείμενο */
+@media (max-width: 767.98px) {
+  .language-select {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+    width: 40px;
+    padding-left: 0;
+    background-position: center;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dropdown-menu {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .dropdown-menu .dropdown-item {
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dropdown-menu li {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+  }
+
+  .dropdown-menu .dropdown-item {
+    background-color: rgba(255, 255, 255, 0.85); /* Λευκό ημιδιαφανές */
+    border-radius: 10px;
+    margin: 4px 8px;
+    padding: 6px 12px;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 1); /* Πιο έντονο στο hover */
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    flex-wrap: nowrap !important;
+    padding: 0.5rem 1rem !important;
+    justify-content: space-between !important;
+    align-items: center;
+  }
+
+  .navbar .navbar-brand img {
+    height: 42px; 
+  }
+
+  .header-form,
+  .navbar .nav-item:not(.dropdown):not(:last-child),
+  .navbar .dropdown.ps-3,
+  .navbar .dropdown.ps-1 {
+    display: none !important;
+  }
+
+  .navbar .dropdown,
+  .navbar .dropdown.px-3,
+  .navbar .btn {
+    padding: 0 4px;
+  }
 }
