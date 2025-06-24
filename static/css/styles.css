@@ -84,6 +84,16 @@ body {
   background: #fff;
   padding: 15px;
 }
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+}
+.breadcrumb .active {
+  color: #555;
+}
 
 .fc-event {
   border: 1px solid #eee !important;
